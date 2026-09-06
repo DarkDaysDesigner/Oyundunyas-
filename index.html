@@ -74,9 +74,8 @@
             box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
         }
 
-        /* Farklı renklerde kutular (Friv tarzı) */
         .game-card:nth-child(1) { background-color: #ff6b6b; }
-        .game-card:nth-child(2) { background-color: #4ecdc4; }
+        .game-card:nth-child(2) { background-color: #4ecdc4; color: #333;}
         .game-card:nth-child(3) { background-color: #ffe66d; color: #333; }
         .game-card:nth-child(4) { background-color: #1a535c; }
         .game-card:nth-child(5) { background-color: #ff9f1c; }
@@ -107,14 +106,15 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+            z-index: 1001;
         }
 
         iframe {
-            width: 80%;
-            height: 80%;
+            width: 85%;
+            height: 85%;
             border: none;
             border-radius: 10px;
-            background-color: white;
+            background-color: #000;
         }
     </style>
 </head>
@@ -131,46 +131,43 @@
     </header>
 
     <main class="game-grid">
-        <!-- 1. Oyun -->
-        <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/rvvASMiM/50b4bb2e807147b3be8418059c253456/')">
-            Snake.io Benzeri
+        <!-- 1. Oyun: Snake -->
+        <div class="game-card" onclick="openGame('https://www.crazygames.com/embed/snake-is-mlg-edition')">
+            Snake.io
         </div>
         
-        <!-- 2. Oyun -->
-        <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/rvvASMiM/b817d23d8c1945a8ab1b7a70198f2eb3/')">
-            2 Kişilik Tank
+        <!-- 2. Oyun: 2 Kişilik (Ateş ve Su) -->
+        <div class="game-card" onclick="openGame('https://www.crazygames.com/embed/fireboy-and-watergirl-the-forest-temple')">
+            Ateş ve Su (2 Kişilik)
         </div>
 
-        <!-- 3. Oyun -->
-        <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/rvvASMiM/9f16d7a4cb2d41b5a5b51d1e43c683b5/')">
-            Araba Yarışı (1 Kişilik)
+        <!-- 3. Oyun: Araba Yarışı -->
+        <div class="game-card" onclick="openGame('https://www.crazygames.com/embed/madalin-stunt-cars-2')">
+            Araba Yarışı
         </div>
 
-        <!-- 4. Oyun (Örnek) -->
-        <div class="game-card" onclick="alert('Buraya başka bir oyun linki eklenebilir!')">
-            Aksiyon Oyunu
+        <!-- 4. Oyun: Smash Karts (Çok Oyunculu) -->
+        <div class="game-card" onclick="openGame('https://www.crazygames.com/embed/smash-karts')">
+            Smash Karts
         </div>
 
-        <!-- 5. Oyun (Örnek) -->
-        <div class="game-card" onclick="alert('Buraya başka bir oyun linki eklenebilir!')">
-            Zeka Oyunu
+        <!-- 5. Oyun: Çöp Adam -->
+        <div class="game-card" onclick="openGame('https://www.crazygames.com/embed/stickman-hook')">
+            Stickman Hook
         </div>
     </main>
 
-    <!-- Oyunun açılacağı tam ekran pencere -->
     <div id="game-player">
         <button class="close-btn" onclick="closeGame()">Kapat X</button>
-        <iframe id="game-frame" src=""></iframe>
+        <iframe id="game-frame" src="" allow="gamepad *;"></iframe>
     </div>
 
     <script>
-        // Oyunu iframe içinde açan fonksiyon
         function openGame(gameUrl) {
             document.getElementById('game-frame').src = gameUrl;
             document.getElementById('game-player').style.display = 'flex';
         }
 
-        // Oyunu kapatan fonksiyon
         function closeGame() {
             document.getElementById('game-frame').src = '';
             document.getElementById('game-player').style.display = 'none';
