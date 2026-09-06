@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyun Dünyası</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            color: white;
+        }
+
+        header {
+            background-color: #16213e;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #e94560;
+        }
+
+        .category-nav {
+            margin-top: 10px;
+        }
+
+        .category-nav button {
+            background-color: #0f3460;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .category-nav button:hover {
+            background-color: #e94560;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background-color: #0f3460;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            border: 2px solid transparent;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
+            border-color: #e94560;
+            box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
+        }
+
+        /* Farklı renklerde kutular (Friv tarzı) */
+        .game-card:nth-child(1) { background-color: #ff6b6b; }
+        .game-card:nth-child(2) { background-color: #4ecdc4; }
+        .game-card:nth-child(3) { background-color: #ffe66d; color: #333; }
+        .game-card:nth-child(4) { background-color: #1a535c; }
+        .game-card:nth-child(5) { background-color: #ff9f1c; }
+
+        #game-player {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background-color: #e94560;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        iframe {
+            width: 80%;
+            height: 80%;
+            border: none;
+            border-radius: 10px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎮 Oyun Dünyası</h1>
+        <div class="category-nav">
+            <button>Tüm Oyunlar</button>
+            <button>1 Kişilik</button>
+            <button>2 Kişilik</button>
+            <button>IO Oyunları</button>
+        </div>
+    </header>
+
+    <main class="game-grid">
+        <!-- 1. Oyun -->
+        <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/rvvASMiM/50b4bb2e807147b3be8418059c253456/')">
+            Snake.io Benzeri
+        </div>
+        
+        <!-- 2. Oyun -->
+        <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/rvvASMiM/b817d23d8c1945a8ab1b7a70198f2eb3/')">
+            2 Kişilik Tank
+        </div>
+
+        <!-- 3. Oyun -->
+        <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/rvvASMiM/9f16d7a4cb2d41b5a5b51d1e43c683b5/')">
+            Araba Yarışı (1 Kişilik)
+        </div>
+
+        <!-- 4. Oyun (Örnek) -->
+        <div class="game-card" onclick="alert('Buraya başka bir oyun linki eklenebilir!')">
+            Aksiyon Oyunu
+        </div>
+
+        <!-- 5. Oyun (Örnek) -->
+        <div class="game-card" onclick="alert('Buraya başka bir oyun linki eklenebilir!')">
+            Zeka Oyunu
+        </div>
+    </main>
+
+    <!-- Oyunun açılacağı tam ekran pencere -->
+    <div id="game-player">
+        <button class="close-btn" onclick="closeGame()">Kapat X</button>
+        <iframe id="game-frame" src=""></iframe>
+    </div>
+
+    <script>
+        // Oyunu iframe içinde açan fonksiyon
+        function openGame(gameUrl) {
+            document.getElementById('game-frame').src = gameUrl;
+            document.getElementById('game-player').style.display = 'flex';
+        }
+
+        // Oyunu kapatan fonksiyon
+        function closeGame() {
+            document.getElementById('game-frame').src = '';
+            document.getElementById('game-player').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
