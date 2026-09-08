@@ -10,17 +10,17 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background-color: #080a0f; color: #fff; line-height: 1.6; }
         
-        /* MAVİ TEMA RENKLERİ: Ana Mavi #00a8ff, Koyu Mavi #007bb5 */
-
         /* NAVBAR */
         nav { background: #10141d; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #00a8ff; }
         .logo { font-family: 'Teko', sans-serif; font-size: 32px; font-weight: 700; color: #fff; letter-spacing: 1px; }
         .logo span { color: #00a8ff; }
+        .nav-links { display: flex; align-items: center; }
         .nav-links a { color: #ccc; text-decoration: none; margin-left: 20px; font-weight: 600; transition: 0.3s; cursor: pointer; }
         .nav-links a:hover { color: #00a8ff; }
+        .nav-links .oy-link { color: #00e676; border: 1px solid #00e676; padding: 5px 10px; border-radius: 4px; }
+        .nav-links .oy-link:hover { background: #00e676; color: #000; }
 
-        /* HERO BÖLÜMÜ (HAREKETLİ GIF ARKA PLAN VE IP) */
-        /* GIF'in daha net görünmesi için saydamlığı 0.7 ve 0.9 olarak ayarladım */
+        /* HERO BÖLÜMÜ */
         .hero { background: linear-gradient(rgba(8, 10, 15, 0.7), rgba(8, 10, 15, 0.9)), url('https://i.ibb.co/R40X4SBN/banners-yaset-2.gif') center/cover; text-align: center; padding: 80px 20px; border-bottom: 1px solid #1c2331; }
         .hero h1 { font-family: 'Teko', sans-serif; font-size: 65px; color: #fff; margin-bottom: 5px; text-shadow: 0 0 20px rgba(0, 168, 255, 0.8); letter-spacing: 2px; }
         .hero p { font-size: 18px; color: #e0e5ec; margin-bottom: 30px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); font-weight: 600; }
@@ -28,7 +28,7 @@
         .ip-box { background: rgba(18, 24, 36, 0.85); backdrop-filter: blur(5px); display: inline-block; padding: 25px 40px; border-radius: 8px; border: 1px solid #00a8ff; margin-bottom: 20px; box-shadow: 0 0 25px rgba(0, 168, 255, 0.3); }
         .ip-box h2 { font-family: 'Teko', sans-serif; letter-spacing: 3px; font-size: 36px; color: #00e676; margin-bottom: 5px; }
         
-        /* CANLI OYUNCU LİSTESİ BÖLÜMÜ */
+        /* CANLI OYUNCU LİSTESİ */
         .player-status-container { margin-top: 15px; border-top: 1px solid rgba(28, 35, 49, 0.8); padding-top: 15px; text-align: left; }
         .player-status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .player-status-header h3 { font-size: 14px; color: #00a8ff; font-weight: 600; }
@@ -48,6 +48,8 @@
         .btn-ts3:hover { background: #1b6299; }
         .btn-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; }
         .btn-ig:hover { filter: brightness(1.1); transform: scale(1.05); }
+        .btn-panel { background: #111; color: #00e676; border: 1px solid #00e676; }
+        .btn-panel:hover { background: #00e676; color: #000; }
 
         /* İÇERİK BÖLÜMLERİ */
         .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
@@ -85,7 +87,8 @@
         <div class="nav-links">
             <a href="#history">Hakkımızda</a>
             <a href="#complaint">Şikayet & Destek</a>
-            <a onclick="document.getElementById('loginModal').style.display='flex'">Yönetici Paneli</a>
+            <a href="https://panel.oyunyoneticisi.com/giris.php" target="_blank" class="oy-link">OY Paneli</a>
+            <a onclick="document.getElementById('loginModal').style.display='flex'">Site Yönetimi</a>
         </div>
     </nav>
 
@@ -98,25 +101,24 @@
             <span style="color: #9ab; font-size: 12px; display: block; margin-bottom: 2px;">SUNUCU IP ADRESİ</span>
             <h2 id="serverIp">95.173.173.105</h2>
             
-            <!-- Canlı Oyuncu Listesi Alanı -->
             <div class="player-status-container">
                 <div class="player-status-header">
                     <h3>🟢 Aktif Oyuncular (<span id="playerCount">0</span>/32)</h3>
-                    <a href="https://www.oyunyoneticisi.com/counter-strike-16-server.html" target="_blank" style="color:#00e676; text-decoration:none; font-size:12px; border:1px solid #00e676; padding:3px 8px; border-radius:3px;">OyunYöneticisi</a>
+                    <a href="https://www.oyunyoneticisi.com/counter-strike-16-server.html" target="_blank" style="color:#00e676; text-decoration:none; font-size:12px; border:1px solid #00e676; padding:3px 8px; border-radius:3px;">Canlı Durum</a>
                 </div>
-                <!-- JS ile Doldurulacak Liste -->
                 <div class="player-grid" id="playerList">
-                    <!-- Oyuncular buraya gelecek -->
+                    <!-- Oyuncular JS ile eklenecek -->
                 </div>
             </div>
         </div>
 
-        <!-- BUTONLAR (TS3 ve Instagram eklendi) -->
+        <!-- BUTONLAR (OY Paneli eklendi) -->
         <div class="buttons">
             <a href="steam://connect/95.173.173.105" class="btn btn-connect">🎮 Oyuna Bağlan</a>
             <button class="btn btn-copy" onclick="copyIp()">📋 IP Kopyala</button>
             <a href="ts3server://95.173.173.105" class="btn btn-ts3">🎧 TS3 Bağlan</a>
             <a href="https://instagram.com/leqacyclan" target="_blank" class="btn btn-ig">📸 Instagram</a>
+            <a href="https://panel.oyunyoneticisi.com/giris.php" target="_blank" class="btn btn-panel">⚙️ OY Paneline Git</a>
         </div>
     </div>
 
@@ -136,7 +138,7 @@
     <div class="container" id="complaint">
         <div id="publicArea">
             <h2 class="section-title">ŞİKAYET VE DESTEK BİLDİRİMİ</h2>
-            <p style="color: #9ab; font-size: 14px; margin-bottom: 20px;">Sunucu içi admin şikayetlerini, kural ihlallerini veya ban itirazlarını buradan iletebilirsiniz. Yazdıklarınızı <b>sadece sunucu yöneticileri</b> görebilir.</p>
+            <p style="color: #9ab; font-size: 14px; margin-bottom: 20px;">Sunucu içi admin şikayetlerini veya kural ihlallerini buradan iletebilirsiniz. Yazdıklarınızı <b>sadece kurucular</b> görebilir.</p>
             
             <div class="form-box">
                 <div class="input-group">
@@ -145,20 +147,20 @@
                 </div>
                 <div class="input-group">
                     <label>Konu / Şikayet Edilen Admin</label>
-                    <input type="text" id="compSubject" placeholder="Örn: Haksız yere mute atıldı">
+                    <input type="text" id="compSubject" placeholder="Örn: Haksız yere ban atıldı">
                 </div>
                 <div class="input-group">
                     <label>Olayın Detayları</label>
                     <textarea id="compText" rows="4" placeholder="Ne olduğunu detaylıca anlatın..."></textarea>
                 </div>
-                <button class="btn btn-connect" onclick="submitComplaint()" style="width: 100%; justify-content: center;">Talebi Gönder</button>
+                <button class="btn btn-connect" onclick="submitComplaint()" style="width: 100%; justify-content: center;">Şikayeti Yolla</button>
             </div>
         </div>
 
         <!-- YÖNETİCİ PANELİ -->
         <div id="adminArea">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #1c2331; padding-bottom: 10px;">
-                <h2 style="color: #00a8ff; font-family: 'Teko', sans-serif; font-size: 32px;">JUSTSİYASET YÖNETİCİ PANELİ</h2>
+                <h2 style="color: #00a8ff; font-family: 'Teko', sans-serif; font-size: 32px;">SİTE YÖNETİM PANELİ</h2>
                 <button class="btn btn-copy" onclick="logoutAdmin()">Çıkış Yap</button>
             </div>
             
@@ -170,7 +172,7 @@
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h2 style="color: #00a8ff; font-family: 'Teko', sans-serif; font-size: 32px; margin-bottom: 5px;">YÖNETİCİ GİRİŞİ</h2>
-            <p style="color: #9ab; font-size: 12px; margin-bottom: 25px;">Sadece JustSiyaset kurucuları giriş yapabilir.</p>
+            <p style="color: #9ab; font-size: 12px; margin-bottom: 25px;">Site içi şikayetleri okumak için giriş yapın.</p>
             
             <input type="text" id="adminUser" placeholder="Kullanıcı Adı">
             <input type="password" id="adminPass" placeholder="Şifre">
@@ -210,8 +212,15 @@
             alert("IP Adresi Kopyalandı: 95.173.173.105\nOyuna girip konsola 'connect 95.173.173.105' yazarak bağlanabilirsiniz.");
         }
 
-        // --- ŞİKAYET SİSTEMİ ---
-        let complaints = JSON.parse(localStorage.getItem('jsComplaints')) || [];
+        // --- ŞİKAYET SİSTEMİ (DÜZELTİLDİ VE GÜÇLENDİRİLDİ) ---
+        // Verileri alırken hata olursa diye try-catch eklendi
+        let complaints = [];
+        try {
+            const saved = localStorage.getItem('justSiyasetComp');
+            if(saved) complaints = JSON.parse(saved);
+        } catch(e) {
+            console.error("Veri okuma hatası", e);
+        }
 
         function submitComplaint() {
             const name = document.getElementById('compName').value.trim();
@@ -219,23 +228,30 @@
             const text = document.getElementById('compText').value.trim();
 
             if(name === '' || subject === '' || text === '') {
-                return alert("Lütfen tüm alanları doldurun!");
+                return alert("Lütfen tüm alanları eksiksiz doldurun!");
             }
 
             const newComp = {
-                id: Date.now(), name: name, subject: subject, text: text,
+                id: Date.now(),
+                name: name,
+                subject: subject,
+                text: text,
                 date: new Date().toLocaleString('tr-TR')
             };
 
             complaints.push(newComp);
-            localStorage.setItem('jsComplaints', JSON.stringify(complaints));
+            localStorage.setItem('justSiyasetComp', JSON.stringify(complaints));
             
             document.getElementById('compName').value = '';
             document.getElementById('compSubject').value = '';
             document.getElementById('compText').value = '';
             
-            alert("Şikayetiniz başarıyla iletildi.");
-            renderComplaints(); 
+            alert("Şikayetiniz başarıyla sisteme kaydedildi! Sadece yöneticiler görebilir.");
+            
+            // Eğer admin panel açıksa anlık olarak verileri güncelle
+            if (document.getElementById('adminArea').style.display === 'block') {
+                renderComplaints();
+            }
         }
 
         // --- YÖNETİCİ SİSTEMİ ---
@@ -270,17 +286,17 @@
             list.innerHTML = '';
 
             if(complaints.length === 0) {
-                list.innerHTML = '<p style="color: #9ab; font-style: italic;">Sistemde henüz hiç şikayet bulunmuyor.</p>';
+                list.innerHTML = '<p style="color: #9ab; font-style: italic;">Sistemde okunmamış şikayet bulunmuyor.</p>';
                 return;
             }
 
-            const sorted = [...complaints].reverse();
+            const sorted = [...complaints].reverse(); // En yeniler üstte çıksın
             sorted.forEach(c => {
                 const card = document.createElement('div');
                 card.className = 'complaint-card';
                 card.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h4 style="color: #00a8ff;">Gönderen: ${c.name}</h4>
+                        <h4 style="color: #00a8ff;">Oyuncu: ${c.name}</h4>
                         <button onclick="deleteComplaint(${c.id})" style="background:#1c2331; color:#fff; border:1px solid #00a8ff; padding:5px 10px; border-radius:3px; cursor:pointer;">Sil</button>
                     </div>
                     <span style="display: block; margin-bottom: 10px;">Konu: <b>${c.subject}</b> | Tarih: ${c.date}</span>
@@ -291,10 +307,10 @@
         }
 
         function deleteComplaint(id) {
-            if(confirm("Silmek istediğinize emin misiniz?")) {
+            if(confirm("Bu şikayeti silmek istediğinize emin misiniz?")) {
                 complaints = complaints.filter(c => c.id !== id);
-                localStorage.setItem('jsComplaints', JSON.stringify(complaints));
-                renderComplaints();
+                localStorage.setItem('justSiyasetComp', JSON.stringify(complaints));
+                renderComplaints(); // Sildikten sonra listeyi yenile
             }
         }
     </script>
