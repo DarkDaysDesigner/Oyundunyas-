@@ -230,21 +230,7 @@
             Object.keys(servers).forEach(key => {
                 const server = servers[key];
                 
-                /*
-                // EĞER İLERİDE ÇALIŞAN BİR CS 1.6 API BULURSAN, SİMÜLASYONU SİLİP BU KODU KULLANABİLİRSİN:
-                fetch(`https://api.senin-siten.com/status?ip=${server.ip}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        document.getElementById(server.countId).innerText = data.players.length;
-                        const listEl = document.getElementById(server.listId);
-                        listEl.innerHTML = '';
-                        data.players.forEach(player => {
-                            listEl.innerHTML += `<div class="player-item">👤 ${player.name}</div>`;
-                        });
-                    }).catch(err => console.log("Veri çekilemedi", err));
-                */
-
-                // ŞİMDİLİK KULLANILACAK SİMÜLASYON VERİSİ (Arayüz boş kalmasın diye)
+                // ŞİMDİLİK KULLANILACAK SİMÜLASYON VERİSİ
                 const mockPlayers = ["DarkDaysC", "Mynameis", "Kemal", "siyasetgaming", "Efsane", "ProGamer", "JailbreakKing", "Komutcu", "Oyuncu" + Math.floor(Math.random()*99)];
                 const randomCount = Math.floor(Math.random() * (mockPlayers.length - 4)) + 4; 
                 
@@ -262,12 +248,11 @@
         window.onload = function() {
             fetchLiveServerData();
             
-            // İŞTE DAKİKALIK AYAR BURASI: 60000 milisaniye = 1 Dakika.
-            // Bu kod her dakika fetchLiveServerData fonksiyonunu arka planda tetikler.
+            // DAKİKALIK AYAR BURASI: 60000 milisaniye = 1 Dakika.
             setInterval(fetchLiveServerData, 60000); 
         };
 
-        // --- IP KOPYALAMA (DİNAMİK HALE GETİRİLDİ) ---
+        // --- IP KOPYALAMA ---
         function copyIp(ipAddress) {
             navigator.clipboard.writeText(ipAddress);
             alert("IP Adresi Kopyalandı: " + ipAddress + "\nOyuna girip konsola 'connect " + ipAddress + "' yazarak bağlanabilirsiniz.");
@@ -318,10 +303,8 @@
             const user = document.getElementById('adminUser').value;
             const pass = document.getElementById('adminPass').value;
 
-            const isAdmin1 = (user === 'Mynameis' && pass === 'kemal12345');
-            const isAdmin2 = (user === 'siyasetgaming' && pass === 'yöneticiyizbiz');
-
-            if(isAdmin1 || isAdmin2) {
+            // TEK YÖNETİCİ GİRİŞİ OLARAK GÜNCELLENDİ
+            if(user === 'murat1233180' && pass === '8514126c') {
                 document.getElementById('loginModal').style.display = 'none';
                 document.getElementById('publicArea').style.display = 'none';
                 document.getElementById('adminArea').style.display = 'block';
