@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siyaset & Legacy Gaming | CS 1.6 Jailbreak</title>
+    <title>JustSiyaset | CS 1.6 Jailbreak</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Inter:wght@400;600&display=swap');
 
@@ -12,18 +12,24 @@
         
         /* NAVBAR */
         nav { background: #151515; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #b71c1c; }
-        .logo { font-family: 'Teko', sans-serif; font-size: 28px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+        .logo { font-family: 'Teko', sans-serif; font-size: 32px; font-weight: 700; color: #fff; letter-spacing: 1px; }
         .logo span { color: #b71c1c; }
         .nav-links a { color: #ccc; text-decoration: none; margin-left: 20px; font-weight: 600; transition: 0.3s; cursor: pointer; }
         .nav-links a:hover { color: #b71c1c; }
 
         /* HERO BÖLÜMÜ (IP ve BAĞLAN) */
-        .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover; text-align: center; padding: 100px 20px; border-bottom: 1px solid #333; }
-        .hero h1 { font-family: 'Teko', sans-serif; font-size: 60px; color: #fff; margin-bottom: 10px; text-shadow: 0 0 15px rgba(183, 28, 28, 0.8); }
+        .hero { background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover; text-align: center; padding: 90px 20px; border-bottom: 1px solid #333; }
+        .hero h1 { font-family: 'Teko', sans-serif; font-size: 65px; color: #fff; margin-bottom: 5px; text-shadow: 0 0 15px rgba(183, 28, 28, 0.8); letter-spacing: 2px; }
         .hero p { font-size: 18px; color: #aaa; margin-bottom: 30px; }
-        .ip-box { background: #1a1a1a; display: inline-block; padding: 15px 30px; border-radius: 8px; border: 1px solid #b71c1c; margin-bottom: 20px; }
-        .ip-box h2 { font-family: 'Teko', sans-serif; letter-spacing: 2px; font-size: 30px; color: #00e676; }
-        .buttons { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+        
+        .ip-box { background: #1a1a1a; display: inline-block; padding: 25px 40px; border-radius: 8px; border: 1px solid #b71c1c; margin-bottom: 20px; box-shadow: 0 0 20px rgba(183, 28, 28, 0.15); }
+        .ip-box h2 { font-family: 'Teko', sans-serif; letter-spacing: 3px; font-size: 36px; color: #00e676; margin-bottom: 10px; }
+        
+        .tracker-box { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 15px; border-top: 1px solid #333; padding-top: 15px; }
+        .tracker-btn { background: #181a20; color: #00e676; border: 1px solid #00e676; padding: 8px 15px; border-radius: 4px; font-size: 12px; text-decoration: none; font-weight: bold; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px; }
+        .tracker-btn:hover { background: #00e676; color: #000; }
+
+        .buttons { display: flex; gap: 15px; justify-content: center; margin-top: 25px; }
         .btn { padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 16px; transition: 0.3s; cursor: pointer; border: none; }
         .btn-connect { background: #b71c1c; color: white; box-shadow: 0 0 15px rgba(183, 28, 28, 0.5); }
         .btn-connect:hover { background: #d32f2f; transform: scale(1.05); }
@@ -33,14 +39,14 @@
         /* İÇERİK BÖLÜMLERİ */
         .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
         .section-title { font-family: 'Teko', sans-serif; font-size: 35px; color: #b71c1c; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px; text-transform: uppercase; }
-        .history-box { background: #151515; padding: 30px; border-radius: 8px; border-left: 4px solid #b71c1c; font-size: 15px; color: #ddd; }
+        .history-box { background: #151515; padding: 30px; border-radius: 8px; border-left: 4px solid #b71c1c; font-size: 15px; color: #ddd; line-height: 1.8; }
         
         /* ŞİKAYET FORMU */
         .form-box { background: #111; padding: 30px; border-radius: 8px; border: 1px solid #333; }
         .input-group { margin-bottom: 15px; }
         .input-group label { display: block; margin-bottom: 5px; color: #aaa; font-size: 14px; }
-        .input-group input, .input-group textarea { width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 5px; outline: none; font-family: 'Inter', sans-serif; }
-        .input-group input:focus, .input-group textarea:focus { border-color: #b71c1c; }
+        .input-group input, .input-group textarea { width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 5px; outline: none; font-family: 'Inter', sans-serif; transition: 0.3s; }
+        .input-group input:focus, .input-group textarea:focus { border-color: #b71c1c; background: #1f1f1f; }
 
         /* YÖNETİCİ PANELİ (GİZLİ) */
         #adminArea { display: none; background: #0a0a0a; padding: 30px; border-radius: 8px; border: 1px solid #00e676; margin-top: 30px; }
@@ -50,38 +56,46 @@
         .complaint-card p { color: #ccc; margin-top: 10px; font-size: 14px; }
         
         /* MODAL (GİRİŞ) */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background: #151515; padding: 30px; border-radius: 8px; width: 350px; border: 1px solid #333; text-align: center; }
-        .modal-content input { width: 100%; padding: 10px; margin-bottom: 15px; background: #111; border: 1px solid #444; color: white; border-radius: 5px; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
+        .modal-content { background: #151515; padding: 35px; border-radius: 8px; width: 350px; border: 1px solid #333; text-align: center; }
+        .modal-content input { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid #444; color: white; border-radius: 5px; outline: none; }
+        .modal-content input:focus { border-color: #b71c1c; }
         
-        footer { text-align: center; padding: 20px; background: #111; color: #666; font-size: 13px; margin-top: 50px; border-top: 1px solid #222; }
+        footer { text-align: center; padding: 25px; background: #111; color: #666; font-size: 13px; margin-top: 50px; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
 
     <!-- ÜST MENÜ -->
     <nav>
-        <div class="logo">SİYASET <span>&</span> LEGACY</div>
+        <div class="logo">JUST<span>SİYASET</span></div>
         <div class="nav-links">
             <a href="#history">Hakkımızda</a>
             <a href="#complaint">Şikayet & Destek</a>
-            <a onclick="document.getElementById('loginModal').style.display='flex'">Yönetici Girişi</a>
+            <a onclick="document.getElementById('loginModal').style.display='flex'">Yönetici Paneli</a>
         </div>
     </nav>
 
     <!-- ANA EKRAN (IP & BAĞLAN) -->
     <div class="hero">
-        <h1>SİYASET & LEGACY GAMING</h1>
+        <h1>JUSTSİYASET GAMING</h1>
         <p>CS 1.6 Jailbreak Sunucusu - Kuralsızların Tek Adresi</p>
         
         <div class="ip-box">
-            <span style="color: #aaa; font-size: 12px; display: block; margin-bottom: 5px;">SUNUCU IP ADRESİ</span>
+            <span style="color: #aaa; font-size: 12px; display: block; margin-bottom: 2px;">SUNUCU IP ADRESİ</span>
             <h2 id="serverIp">95.173.173.105</h2>
-            <div style="color: #00e676; font-size: 13px; margin-top: 5px; font-weight: bold;">🟢 Sunucu Aktif (24/32 Oyuncu)</div>
+            
+            <!-- OyunYöneticisi Canlı Takip Entegrasyonu -->
+            <div class="tracker-box">
+                <span style="color: #ccc; font-size: 13px;">Sunucu Aktifliğini Takip Edin:</span>
+                <a href="https://www.oyunyoneticisi.com/counter-strike-16-server.html" target="_blank" class="tracker-btn">
+                    📊 OyunYöneticisi Canlı Durum
+                </a>
+            </div>
         </div>
 
         <div class="buttons">
-            <!-- steam://connect/ linki CS 1.6 yüklü bilgisayarlarda oyunu direkt açıp IP'ye bağlar -->
+            <!-- steam://connect/ linki oyunu direkt açıp IP'ye bağlar -->
             <a href="steam://connect/95.173.173.105" class="btn btn-connect">🚀 Oyuna Bağlan</a>
             <button class="btn btn-copy" onclick="copyIp()">📋 IP Kopyala</button>
         </div>
@@ -91,12 +105,11 @@
     <div class="container" id="history">
         <h2 class="section-title">TARİHÇEMİZ</h2>
         <div class="history-box">
-            <p><strong>2014 yılında başlayan serüvenimiz...</strong></p>
+            <p><strong style="color: #b71c1c; font-size: 18px;">2014 yılından bugüne uzanan serüvenimiz...</strong></p>
             <br>
-            <p>Yıllarca Counter-Strike 1.6 camiasında kaliteli oyun ve sarsılmaz dostlukların temelini atan topluluğumuz, 2014 yılında hizmet vermeye başlamıştır. On binlerce oyuncuya ev sahipliği yapan sunucularımız, adaleti ve eğlenceyi her zaman ön planda tutmuştur.</p>
+            <p>Yıllarca Counter-Strike 1.6 camiasında kaliteli oyun ve sarsılmaz dostlukların temelini atan topluluğumuz, yoluna <b>JustSiyaset</b> adı altında daha güçlü bir şekilde devam etmektedir.</p>
             <br>
-            <p><strong style="color: #b71c1c;">Büyük Birleşme (2025 - 2026)</strong></p>
-            <p>Jailbreak ve Pro sunucuların iki devi olan <b>Legacy Legend</b> ve <b>Siyaset Gaming</b>, 2025-2026 sezonunda güçlerini birleştirme kararı almıştır. Bu tarihi birleşme ile sunucu altyapımız yenilenmiş, klan savaşları ve etkinlikler zirveye ulaşmıştır. Geçmişten aldığımız miras (Legacy) ile geleceği şekillendirmeye devam ediyoruz.</p>
+            <p>2014 yılından bu yana on binlerce oyuncuya ev sahipliği yapan Jailbreak sunucumuz; adaleti, disiplini ve kuralsız eğlenceyi her zaman ön planda tutmuştur. Eski meyhane jailbreak ruhunu günümüzün modern eklentileriyle harmanlayan JustSiyaset Gaming, Türkiye'nin en köklü ve sarsılmaz CS 1.6 topluluklarından biri olarak hizmet vermeye kesintisiz devam ediyor.</p>
         </div>
     </div>
 
@@ -104,7 +117,7 @@
     <div class="container" id="complaint">
         <div id="publicArea">
             <h2 class="section-title">ŞİKAYET VE DESTEK BİLDİRİMİ</h2>
-            <p style="color: #888; font-size: 14px; margin-bottom: 20px;">Sunucu içi admin şikayetlerini, kural ihlallerini veya unban taleplerini buradan iletebilirsiniz. Yazdıklarınızı <b>sadece yöneticiler</b> görebilir.</p>
+            <p style="color: #888; font-size: 14px; margin-bottom: 20px;">Sunucu içi admin şikayetlerini, kural ihlallerini veya ban itirazlarını buradan kuruculara iletebilirsiniz. Yazdıklarınızı <b>sadece sunucu yöneticileri</b> görebilir.</p>
             
             <div class="form-box">
                 <div class="input-group">
@@ -113,26 +126,26 @@
                 </div>
                 <div class="input-group">
                     <label>Konu / Şikayet Edilen Admin</label>
-                    <input type="text" id="compSubject" placeholder="Örn: Haksız ban atıldı">
+                    <input type="text" id="compSubject" placeholder="Örn: Haksız yere mute atıldı">
                 </div>
                 <div class="input-group">
                     <label>Olayın Detayları</label>
                     <textarea id="compText" rows="4" placeholder="Ne olduğunu detaylıca anlatın..."></textarea>
                 </div>
-                <button class="btn btn-connect" onclick="submitComplaint()" style="width: 100%;">Gönder</button>
+                <button class="btn btn-connect" onclick="submitComplaint()" style="width: 100%;">Talebi Gönder</button>
             </div>
         </div>
 
         <!-- YÖNETİCİ PANELİ (SADECE GİRİŞ YAPILINCA GÖZÜKÜR) -->
         <div id="adminArea">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">
-                <h2 style="color: #00e676; font-family: 'Teko', sans-serif; font-size: 30px;">YÖNETİCİ PANELİ</h2>
+                <h2 style="color: #00e676; font-family: 'Teko', sans-serif; font-size: 32px;">JUSTSİYASET YÖNETİCİ PANELİ</h2>
                 <button class="btn btn-copy" onclick="logoutAdmin()">Çıkış Yap</button>
             </div>
-            <p style="color: #aaa; margin-bottom: 15px;">Oyunculardan gelen destek talepleri ve şikayetler:</p>
+            <p style="color: #aaa; margin-bottom: 15px;">Oyunculardan gelen destek talepleri ve şikayetler aşağıda listelenmektedir:</p>
             
             <div id="complaintsList">
-                <!-- JS ile şikayetler buraya listelenecek -->
+                <!-- Şikayetler JS ile buraya basılacak -->
             </div>
         </div>
     </div>
@@ -140,8 +153,8 @@
     <!-- YÖNETİCİ GİRİŞ MODALI -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <h2 style="color: #b71c1c; font-family: 'Teko', sans-serif; font-size: 30px; margin-bottom: 5px;">YÖNETİCİ GİRİŞİ</h2>
-            <p style="color: #888; font-size: 12px; margin-bottom: 20px;">Sadece Siyaset & Legacy kurucuları girebilir.</p>
+            <h2 style="color: #b71c1c; font-family: 'Teko', sans-serif; font-size: 32px; margin-bottom: 5px;">YÖNETİCİ GİRİŞİ</h2>
+            <p style="color: #888; font-size: 12px; margin-bottom: 25px;">Sadece JustSiyaset kurucuları giriş yapabilir.</p>
             
             <input type="text" id="adminUser" placeholder="Kullanıcı Adı">
             <input type="password" id="adminPass" placeholder="Şifre">
@@ -152,7 +165,7 @@
     </div>
 
     <footer>
-        &copy; 2014 - 2026 Siyaset Gaming & Legacy Legend. Tüm Hakları Saklıdır.<br>
+        &copy; 2014 - 2026 JustSiyaset Gaming. Tüm Hakları Saklıdır.<br>
         IP: 95.173.173.105 | CS 1.6 Türkiye Topluluğu
     </footer>
 
@@ -160,11 +173,11 @@
         // --- IP KOPYALAMA ---
         function copyIp() {
             navigator.clipboard.writeText("95.173.173.105");
-            alert("IP Adresi Kopyalandı: 95.173.173.105");
+            alert("IP Adresi Kopyalandı: 95.173.173.105\nOyuna girip konsola 'connect 95.173.173.105' yazarak bağlanabilirsiniz.");
         }
 
         // --- VERİTABANI SİMÜLASYONU (Local Storage) ---
-        let complaints = JSON.parse(localStorage.getItem('csComplaints')) || [];
+        let complaints = JSON.parse(localStorage.getItem('jsComplaints')) || [];
 
         // --- ŞİKAYET GÖNDERME ---
         function submitComplaint() {
@@ -185,22 +198,22 @@
             };
 
             complaints.push(newComp);
-            localStorage.setItem('csComplaints', JSON.stringify(complaints));
+            localStorage.setItem('jsComplaints', JSON.stringify(complaints));
             
             document.getElementById('compName').value = '';
             document.getElementById('compSubject').value = '';
             document.getElementById('compText').value = '';
             
-            alert("Şikayetiniz başarıyla kuruculara iletildi. İncelenecektir.");
-            renderComplaints(); // Eğer admin panel açıksa anında güncellensin
+            alert("Şikayetiniz başarıyla JustSiyaset kurucularına iletildi. En kısa sürede incelenecektir.");
+            renderComplaints(); 
         }
 
-        // --- YÖNETİCİ GİRİŞ KONTROLÜ (Senin Verdiğin Şifreler) ---
+        // --- YÖNETİCİ GİRİŞ KONTROLÜ ---
         function checkLogin() {
             const user = document.getElementById('adminUser').value;
             const pass = document.getElementById('adminPass').value;
 
-            // Admin 1 ve Admin 2 hesap kontrolleri
+            // Admin 1 ve Admin 2 hesap kontrolleri (Aynen bıraktım)
             const isAdmin1 = (user === 'Mynameis' && pass === 'kemal12345');
             const isAdmin2 = (user === 'siyasetgaming' && pass === 'yöneticiyizbiz');
 
@@ -216,14 +229,14 @@
                 alert("Hoşgeldin Kurucu: " + user);
                 renderComplaints();
             } else {
-                alert("Hatalı Kullanıcı Adı veya Şifre!");
+                alert("Hatalı Kullanıcı Adı veya Şifre! Sisteme giriş reddedildi.");
             }
         }
 
         function logoutAdmin() {
             document.getElementById('adminArea').style.display = 'none';
             document.getElementById('publicArea').style.display = 'block';
-            alert("Çıkış yapıldı.");
+            alert("Sistemden güvenli çıkış yapıldı.");
         }
 
         // --- ŞİKAYETLERİ PANELE BASTIRMA ---
@@ -232,32 +245,32 @@
             list.innerHTML = '';
 
             if(complaints.length === 0) {
-                list.innerHTML = '<p style="color: #666;">Henüz hiç şikayet veya destek talebi yok.</p>';
+                list.innerHTML = '<p style="color: #666; font-style: italic;">Sistemde henüz hiç şikayet veya destek talebi bulunmuyor.</p>';
                 return;
             }
 
-            // Yeniden eskiye doğru sırala
+            // Yeniden eskiye (en son atılan en üstte olacak şekilde) sırala
             const sorted = [...complaints].reverse();
 
             sorted.forEach(c => {
                 const card = document.createElement('div');
                 card.className = 'complaint-card';
                 card.innerHTML = `
-                    <div style="display: flex; justify-content: space-between;">
-                        <h4>Gönderen: ${c.name}</h4>
-                        <button onclick="deleteComplaint(${c.id})" style="background:#b71c1c; color:white; border:none; padding:3px 8px; border-radius:3px; cursor:pointer;">Sil</button>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="color: #00e676;">Gönderen: ${c.name}</h4>
+                        <button onclick="deleteComplaint(${c.id})" style="background:#b71c1c; color:white; border:none; padding:5px 10px; border-radius:3px; cursor:pointer; font-weight: bold;">Sil</button>
                     </div>
-                    <span>Konu: ${c.subject} | Tarih: ${c.date}</span>
-                    <p>"${c.text}"</p>
+                    <span style="display: block; margin-bottom: 10px;">Konu: <b>${c.subject}</b> | Tarih: ${c.date}</span>
+                    <p style="background: #111; padding: 10px; border-radius: 4px;">"${c.text}"</p>
                 `;
                 list.appendChild(card);
             });
         }
 
         function deleteComplaint(id) {
-            if(confirm("Bu şikayeti silmek istediğinize emin misiniz?")) {
+            if(confirm("Bu şikayeti tamamen silmek istediğinize emin misiniz?")) {
                 complaints = complaints.filter(c => c.id !== id);
-                localStorage.setItem('csComplaints', JSON.stringify(complaints));
+                localStorage.setItem('jsComplaints', JSON.stringify(complaints));
                 renderComplaints();
             }
         }
