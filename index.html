@@ -19,22 +19,23 @@
         .nav-links a { color: #ccc; text-decoration: none; margin-left: 20px; font-weight: 600; transition: 0.3s; cursor: pointer; }
         .nav-links a:hover { color: #00a8ff; }
 
-        /* HERO BÖLÜMÜ (IP ve BAĞLAN) */
-        .hero { background: linear-gradient(rgba(8, 10, 15, 0.85), rgba(8, 10, 15, 0.95)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover; text-align: center; padding: 80px 20px; border-bottom: 1px solid #1c2331; }
-        .hero h1 { font-family: 'Teko', sans-serif; font-size: 65px; color: #fff; margin-bottom: 5px; text-shadow: 0 0 20px rgba(0, 168, 255, 0.6); letter-spacing: 2px; }
-        .hero p { font-size: 18px; color: #9ab; margin-bottom: 30px; }
+        /* HERO BÖLÜMÜ (HAREKETLİ GIF ARKA PLAN VE IP) */
+        /* GIF'in daha net görünmesi için saydamlığı 0.7 ve 0.9 olarak ayarladım */
+        .hero { background: linear-gradient(rgba(8, 10, 15, 0.7), rgba(8, 10, 15, 0.9)), url('https://i.ibb.co/R40X4SBN/banners-yaset-2.gif') center/cover; text-align: center; padding: 80px 20px; border-bottom: 1px solid #1c2331; }
+        .hero h1 { font-family: 'Teko', sans-serif; font-size: 65px; color: #fff; margin-bottom: 5px; text-shadow: 0 0 20px rgba(0, 168, 255, 0.8); letter-spacing: 2px; }
+        .hero p { font-size: 18px; color: #e0e5ec; margin-bottom: 30px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); font-weight: 600; }
         
-        .ip-box { background: #121824; display: inline-block; padding: 25px 40px; border-radius: 8px; border: 1px solid #00a8ff; margin-bottom: 20px; box-shadow: 0 0 25px rgba(0, 168, 255, 0.2); }
+        .ip-box { background: rgba(18, 24, 36, 0.85); backdrop-filter: blur(5px); display: inline-block; padding: 25px 40px; border-radius: 8px; border: 1px solid #00a8ff; margin-bottom: 20px; box-shadow: 0 0 25px rgba(0, 168, 255, 0.3); }
         .ip-box h2 { font-family: 'Teko', sans-serif; letter-spacing: 3px; font-size: 36px; color: #00e676; margin-bottom: 5px; }
         
         /* CANLI OYUNCU LİSTESİ BÖLÜMÜ */
-        .player-status-container { margin-top: 15px; border-top: 1px solid #1c2331; padding-top: 15px; text-align: left; }
+        .player-status-container { margin-top: 15px; border-top: 1px solid rgba(28, 35, 49, 0.8); padding-top: 15px; text-align: left; }
         .player-status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .player-status-header h3 { font-size: 14px; color: #00a8ff; font-weight: 600; }
         .player-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; max-height: 150px; overflow-y: auto; padding-right: 5px; }
         .player-grid::-webkit-scrollbar { width: 5px; }
         .player-grid::-webkit-scrollbar-thumb { background: #00a8ff; border-radius: 5px; }
-        .player-item { background: #1a2233; padding: 6px 12px; border-radius: 4px; border-left: 3px solid #00e676; font-size: 13px; color: #fff; display: flex; align-items: center; gap: 8px; }
+        .player-item { background: rgba(26, 34, 51, 0.8); padding: 6px 12px; border-radius: 4px; border-left: 3px solid #00e676; font-size: 13px; color: #fff; display: flex; align-items: center; gap: 8px; }
         
         /* BUTONLAR */
         .buttons { display: flex; gap: 12px; justify-content: center; margin-top: 25px; flex-wrap: wrap; }
@@ -88,7 +89,7 @@
         </div>
     </nav>
 
-    <!-- ANA EKRAN (IP, OYUNCULAR & BUTONLAR) -->
+    <!-- ANA EKRAN (GIF ARKA PLAN, IP, OYUNCULAR & BUTONLAR) -->
     <div class="hero">
         <h1>JUSTSİYASET GAMING</h1>
         <p>CS 1.6 Jailbreak Sunucusu - Kuralsızların Tek Adresi</p>
@@ -186,7 +187,6 @@
 
     <script>
         // --- CANLI OYUNCU LİSTESİ SİMÜLASYONU ---
-        // Sunucu HTML tabanlı olduğu için oyuncu listesi tasarımını göstermek adına örnek bir liste oluşturuyoruz.
         const mockPlayers = [
             "DarkDaysC", "Mynameis", "Kemal", "siyasetgaming", 
             "Efsane", "ProGamer", "JailbreakKing", "Komutcu"
@@ -202,7 +202,6 @@
             });
         }
         
-        // Sayfa yüklendiğinde oyuncuları göster
         window.onload = loadPlayers;
 
         // --- IP KOPYALAMA ---
