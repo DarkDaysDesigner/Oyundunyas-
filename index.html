@@ -8,60 +8,72 @@
         @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Inter:wght@400;600&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: #0d0d0d; color: #fff; line-height: 1.6; }
+        body { background-color: #080a0f; color: #fff; line-height: 1.6; }
         
+        /* MAVİ TEMA RENKLERİ: Ana Mavi #00a8ff, Koyu Mavi #007bb5 */
+
         /* NAVBAR */
-        nav { background: #151515; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #b71c1c; }
+        nav { background: #10141d; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #00a8ff; }
         .logo { font-family: 'Teko', sans-serif; font-size: 32px; font-weight: 700; color: #fff; letter-spacing: 1px; }
-        .logo span { color: #b71c1c; }
+        .logo span { color: #00a8ff; }
         .nav-links a { color: #ccc; text-decoration: none; margin-left: 20px; font-weight: 600; transition: 0.3s; cursor: pointer; }
-        .nav-links a:hover { color: #b71c1c; }
+        .nav-links a:hover { color: #00a8ff; }
 
         /* HERO BÖLÜMÜ (IP ve BAĞLAN) */
-        .hero { background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover; text-align: center; padding: 90px 20px; border-bottom: 1px solid #333; }
-        .hero h1 { font-family: 'Teko', sans-serif; font-size: 65px; color: #fff; margin-bottom: 5px; text-shadow: 0 0 15px rgba(183, 28, 28, 0.8); letter-spacing: 2px; }
-        .hero p { font-size: 18px; color: #aaa; margin-bottom: 30px; }
+        .hero { background: linear-gradient(rgba(8, 10, 15, 0.85), rgba(8, 10, 15, 0.95)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover; text-align: center; padding: 80px 20px; border-bottom: 1px solid #1c2331; }
+        .hero h1 { font-family: 'Teko', sans-serif; font-size: 65px; color: #fff; margin-bottom: 5px; text-shadow: 0 0 20px rgba(0, 168, 255, 0.6); letter-spacing: 2px; }
+        .hero p { font-size: 18px; color: #9ab; margin-bottom: 30px; }
         
-        .ip-box { background: #1a1a1a; display: inline-block; padding: 25px 40px; border-radius: 8px; border: 1px solid #b71c1c; margin-bottom: 20px; box-shadow: 0 0 20px rgba(183, 28, 28, 0.15); }
-        .ip-box h2 { font-family: 'Teko', sans-serif; letter-spacing: 3px; font-size: 36px; color: #00e676; margin-bottom: 10px; }
+        .ip-box { background: #121824; display: inline-block; padding: 25px 40px; border-radius: 8px; border: 1px solid #00a8ff; margin-bottom: 20px; box-shadow: 0 0 25px rgba(0, 168, 255, 0.2); }
+        .ip-box h2 { font-family: 'Teko', sans-serif; letter-spacing: 3px; font-size: 36px; color: #00e676; margin-bottom: 5px; }
         
-        .tracker-box { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 15px; border-top: 1px solid #333; padding-top: 15px; }
-        .tracker-btn { background: #181a20; color: #00e676; border: 1px solid #00e676; padding: 8px 15px; border-radius: 4px; font-size: 12px; text-decoration: none; font-weight: bold; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px; }
-        .tracker-btn:hover { background: #00e676; color: #000; }
-
-        .buttons { display: flex; gap: 15px; justify-content: center; margin-top: 25px; }
-        .btn { padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 16px; transition: 0.3s; cursor: pointer; border: none; }
-        .btn-connect { background: #b71c1c; color: white; box-shadow: 0 0 15px rgba(183, 28, 28, 0.5); }
-        .btn-connect:hover { background: #d32f2f; transform: scale(1.05); }
-        .btn-copy { background: #222; color: white; border: 1px solid #444; }
-        .btn-copy:hover { background: #333; }
+        /* CANLI OYUNCU LİSTESİ BÖLÜMÜ */
+        .player-status-container { margin-top: 15px; border-top: 1px solid #1c2331; padding-top: 15px; text-align: left; }
+        .player-status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .player-status-header h3 { font-size: 14px; color: #00a8ff; font-weight: 600; }
+        .player-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; max-height: 150px; overflow-y: auto; padding-right: 5px; }
+        .player-grid::-webkit-scrollbar { width: 5px; }
+        .player-grid::-webkit-scrollbar-thumb { background: #00a8ff; border-radius: 5px; }
+        .player-item { background: #1a2233; padding: 6px 12px; border-radius: 4px; border-left: 3px solid #00e676; font-size: 13px; color: #fff; display: flex; align-items: center; gap: 8px; }
+        
+        /* BUTONLAR */
+        .buttons { display: flex; gap: 12px; justify-content: center; margin-top: 25px; flex-wrap: wrap; }
+        .btn { padding: 12px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 15px; transition: 0.3s; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; }
+        .btn-connect { background: #00a8ff; color: #000; box-shadow: 0 0 15px rgba(0, 168, 255, 0.4); }
+        .btn-connect:hover { background: #0088cc; transform: scale(1.05); color: #fff; }
+        .btn-copy { background: #1c2331; color: white; border: 1px solid #2a354a; }
+        .btn-copy:hover { background: #2a354a; }
+        .btn-ts3 { background: #2580c3; color: white; border: 1px solid #3695db; }
+        .btn-ts3:hover { background: #1b6299; }
+        .btn-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; }
+        .btn-ig:hover { filter: brightness(1.1); transform: scale(1.05); }
 
         /* İÇERİK BÖLÜMLERİ */
         .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
-        .section-title { font-family: 'Teko', sans-serif; font-size: 35px; color: #b71c1c; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px; text-transform: uppercase; }
-        .history-box { background: #151515; padding: 30px; border-radius: 8px; border-left: 4px solid #b71c1c; font-size: 15px; color: #ddd; line-height: 1.8; }
+        .section-title { font-family: 'Teko', sans-serif; font-size: 35px; color: #00a8ff; border-bottom: 2px solid #1c2331; padding-bottom: 10px; margin-bottom: 20px; text-transform: uppercase; }
+        .history-box { background: #10141d; padding: 30px; border-radius: 8px; border-left: 4px solid #00a8ff; font-size: 15px; color: #ccd; line-height: 1.8; }
         
         /* ŞİKAYET FORMU */
-        .form-box { background: #111; padding: 30px; border-radius: 8px; border: 1px solid #333; }
+        .form-box { background: #0b0e14; padding: 30px; border-radius: 8px; border: 1px solid #1c2331; }
         .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; margin-bottom: 5px; color: #aaa; font-size: 14px; }
-        .input-group input, .input-group textarea { width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 5px; outline: none; font-family: 'Inter', sans-serif; transition: 0.3s; }
-        .input-group input:focus, .input-group textarea:focus { border-color: #b71c1c; background: #1f1f1f; }
+        .input-group label { display: block; margin-bottom: 5px; color: #9ab; font-size: 14px; }
+        .input-group input, .input-group textarea { width: 100%; padding: 12px; background: #121824; border: 1px solid #1c2331; color: white; border-radius: 5px; outline: none; font-family: 'Inter', sans-serif; transition: 0.3s; }
+        .input-group input:focus, .input-group textarea:focus { border-color: #00a8ff; background: #161d2b; }
 
-        /* YÖNETİCİ PANELİ (GİZLİ) */
-        #adminArea { display: none; background: #0a0a0a; padding: 30px; border-radius: 8px; border: 1px solid #00e676; margin-top: 30px; }
-        .complaint-card { background: #1a1a1a; padding: 15px; margin-bottom: 15px; border-radius: 5px; border-left: 3px solid #d32f2f; }
+        /* YÖNETİCİ PANELİ */
+        #adminArea { display: none; background: #07090d; padding: 30px; border-radius: 8px; border: 1px solid #00a8ff; margin-top: 30px; }
+        .complaint-card { background: #121824; padding: 15px; margin-bottom: 15px; border-radius: 5px; border-left: 3px solid #00a8ff; }
         .complaint-card h4 { color: #fff; margin-bottom: 5px; font-size: 16px; }
-        .complaint-card span { color: #888; font-size: 12px; }
-        .complaint-card p { color: #ccc; margin-top: 10px; font-size: 14px; }
+        .complaint-card span { color: #89a; font-size: 12px; }
+        .complaint-card p { color: #ccd; margin-top: 10px; font-size: 14px; }
         
-        /* MODAL (GİRİŞ) */
+        /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
-        .modal-content { background: #151515; padding: 35px; border-radius: 8px; width: 350px; border: 1px solid #333; text-align: center; }
-        .modal-content input { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid #444; color: white; border-radius: 5px; outline: none; }
-        .modal-content input:focus { border-color: #b71c1c; }
+        .modal-content { background: #10141d; padding: 35px; border-radius: 8px; width: 350px; border: 1px solid #1c2331; text-align: center; }
+        .modal-content input { width: 100%; padding: 12px; margin-bottom: 15px; background: #0b0e14; border: 1px solid #1c2331; color: white; border-radius: 5px; outline: none; }
+        .modal-content input:focus { border-color: #00a8ff; }
         
-        footer { text-align: center; padding: 25px; background: #111; color: #666; font-size: 13px; margin-top: 50px; border-top: 1px solid #222; }
+        footer { text-align: center; padding: 25px; background: #0b0e14; color: #567; font-size: 13px; margin-top: 50px; border-top: 1px solid #1c2331; }
     </style>
 </head>
 <body>
@@ -76,36 +88,42 @@
         </div>
     </nav>
 
-    <!-- ANA EKRAN (IP & BAĞLAN) -->
+    <!-- ANA EKRAN (IP, OYUNCULAR & BUTONLAR) -->
     <div class="hero">
         <h1>JUSTSİYASET GAMING</h1>
         <p>CS 1.6 Jailbreak Sunucusu - Kuralsızların Tek Adresi</p>
         
         <div class="ip-box">
-            <span style="color: #aaa; font-size: 12px; display: block; margin-bottom: 2px;">SUNUCU IP ADRESİ</span>
+            <span style="color: #9ab; font-size: 12px; display: block; margin-bottom: 2px;">SUNUCU IP ADRESİ</span>
             <h2 id="serverIp">95.173.173.105</h2>
             
-            <!-- OyunYöneticisi Canlı Takip Entegrasyonu -->
-            <div class="tracker-box">
-                <span style="color: #ccc; font-size: 13px;">Sunucu Aktifliğini Takip Edin:</span>
-                <a href="https://www.oyunyoneticisi.com/counter-strike-16-server.html" target="_blank" class="tracker-btn">
-                    📊 OyunYöneticisi Canlı Durum
-                </a>
+            <!-- Canlı Oyuncu Listesi Alanı -->
+            <div class="player-status-container">
+                <div class="player-status-header">
+                    <h3>🟢 Aktif Oyuncular (<span id="playerCount">0</span>/32)</h3>
+                    <a href="https://www.oyunyoneticisi.com/counter-strike-16-server.html" target="_blank" style="color:#00e676; text-decoration:none; font-size:12px; border:1px solid #00e676; padding:3px 8px; border-radius:3px;">OyunYöneticisi</a>
+                </div>
+                <!-- JS ile Doldurulacak Liste -->
+                <div class="player-grid" id="playerList">
+                    <!-- Oyuncular buraya gelecek -->
+                </div>
             </div>
         </div>
 
+        <!-- BUTONLAR (TS3 ve Instagram eklendi) -->
         <div class="buttons">
-            <!-- steam://connect/ linki oyunu direkt açıp IP'ye bağlar -->
-            <a href="steam://connect/95.173.173.105" class="btn btn-connect">🚀 Oyuna Bağlan</a>
+            <a href="steam://connect/95.173.173.105" class="btn btn-connect">🎮 Oyuna Bağlan</a>
             <button class="btn btn-copy" onclick="copyIp()">📋 IP Kopyala</button>
+            <a href="ts3server://95.173.173.105" class="btn btn-ts3">🎧 TS3 Bağlan</a>
+            <a href="https://instagram.com/leqacyclan" target="_blank" class="btn btn-ig">📸 Instagram</a>
         </div>
     </div>
 
-    <!-- TARİHÇE (HAKKIMIZDA) -->
+    <!-- TARİHÇE -->
     <div class="container" id="history">
         <h2 class="section-title">TARİHÇEMİZ</h2>
         <div class="history-box">
-            <p><strong style="color: #b71c1c; font-size: 18px;">2014 yılından bugüne uzanan serüvenimiz...</strong></p>
+            <p><strong style="color: #00a8ff; font-size: 18px;">2014 yılından bugüne uzanan serüvenimiz...</strong></p>
             <br>
             <p>Yıllarca Counter-Strike 1.6 camiasında kaliteli oyun ve sarsılmaz dostlukların temelini atan topluluğumuz, yoluna <b>JustSiyaset</b> adı altında daha güçlü bir şekilde devam etmektedir.</p>
             <br>
@@ -113,11 +131,11 @@
         </div>
     </div>
 
-    <!-- ŞİKAYET FORMU (OYUNCULAR İÇİN) -->
+    <!-- ŞİKAYET FORMU -->
     <div class="container" id="complaint">
         <div id="publicArea">
             <h2 class="section-title">ŞİKAYET VE DESTEK BİLDİRİMİ</h2>
-            <p style="color: #888; font-size: 14px; margin-bottom: 20px;">Sunucu içi admin şikayetlerini, kural ihlallerini veya ban itirazlarını buradan kuruculara iletebilirsiniz. Yazdıklarınızı <b>sadece sunucu yöneticileri</b> görebilir.</p>
+            <p style="color: #9ab; font-size: 14px; margin-bottom: 20px;">Sunucu içi admin şikayetlerini, kural ihlallerini veya ban itirazlarını buradan iletebilirsiniz. Yazdıklarınızı <b>sadece sunucu yöneticileri</b> görebilir.</p>
             
             <div class="form-box">
                 <div class="input-group">
@@ -132,35 +150,32 @@
                     <label>Olayın Detayları</label>
                     <textarea id="compText" rows="4" placeholder="Ne olduğunu detaylıca anlatın..."></textarea>
                 </div>
-                <button class="btn btn-connect" onclick="submitComplaint()" style="width: 100%;">Talebi Gönder</button>
+                <button class="btn btn-connect" onclick="submitComplaint()" style="width: 100%; justify-content: center;">Talebi Gönder</button>
             </div>
         </div>
 
-        <!-- YÖNETİCİ PANELİ (SADECE GİRİŞ YAPILINCA GÖZÜKÜR) -->
+        <!-- YÖNETİCİ PANELİ -->
         <div id="adminArea">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">
-                <h2 style="color: #00e676; font-family: 'Teko', sans-serif; font-size: 32px;">JUSTSİYASET YÖNETİCİ PANELİ</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #1c2331; padding-bottom: 10px;">
+                <h2 style="color: #00a8ff; font-family: 'Teko', sans-serif; font-size: 32px;">JUSTSİYASET YÖNETİCİ PANELİ</h2>
                 <button class="btn btn-copy" onclick="logoutAdmin()">Çıkış Yap</button>
             </div>
-            <p style="color: #aaa; margin-bottom: 15px;">Oyunculardan gelen destek talepleri ve şikayetler aşağıda listelenmektedir:</p>
             
-            <div id="complaintsList">
-                <!-- Şikayetler JS ile buraya basılacak -->
-            </div>
+            <div id="complaintsList"></div>
         </div>
     </div>
 
     <!-- YÖNETİCİ GİRİŞ MODALI -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <h2 style="color: #b71c1c; font-family: 'Teko', sans-serif; font-size: 32px; margin-bottom: 5px;">YÖNETİCİ GİRİŞİ</h2>
-            <p style="color: #888; font-size: 12px; margin-bottom: 25px;">Sadece JustSiyaset kurucuları giriş yapabilir.</p>
+            <h2 style="color: #00a8ff; font-family: 'Teko', sans-serif; font-size: 32px; margin-bottom: 5px;">YÖNETİCİ GİRİŞİ</h2>
+            <p style="color: #9ab; font-size: 12px; margin-bottom: 25px;">Sadece JustSiyaset kurucuları giriş yapabilir.</p>
             
             <input type="text" id="adminUser" placeholder="Kullanıcı Adı">
             <input type="password" id="adminPass" placeholder="Şifre">
             
-            <button class="btn btn-connect" style="width: 100%; margin-bottom: 10px;" onclick="checkLogin()">Giriş Yap</button>
-            <button class="btn btn-copy" style="width: 100%;" onclick="document.getElementById('loginModal').style.display='none'">İptal</button>
+            <button class="btn btn-connect" style="width: 100%; margin-bottom: 10px; justify-content: center;" onclick="checkLogin()">Giriş Yap</button>
+            <button class="btn btn-copy" style="width: 100%; justify-content: center;" onclick="document.getElementById('loginModal').style.display='none'">İptal</button>
         </div>
     </div>
 
@@ -170,16 +185,35 @@
     </footer>
 
     <script>
+        // --- CANLI OYUNCU LİSTESİ SİMÜLASYONU ---
+        // Sunucu HTML tabanlı olduğu için oyuncu listesi tasarımını göstermek adına örnek bir liste oluşturuyoruz.
+        const mockPlayers = [
+            "DarkDaysC", "Mynameis", "Kemal", "siyasetgaming", 
+            "Efsane", "ProGamer", "JailbreakKing", "Komutcu"
+        ];
+        
+        function loadPlayers() {
+            document.getElementById('playerCount').innerText = mockPlayers.length;
+            const listEl = document.getElementById('playerList');
+            listEl.innerHTML = '';
+            
+            mockPlayers.forEach(player => {
+                listEl.innerHTML += `<div class="player-item">👤 ${player}</div>`;
+            });
+        }
+        
+        // Sayfa yüklendiğinde oyuncuları göster
+        window.onload = loadPlayers;
+
         // --- IP KOPYALAMA ---
         function copyIp() {
             navigator.clipboard.writeText("95.173.173.105");
             alert("IP Adresi Kopyalandı: 95.173.173.105\nOyuna girip konsola 'connect 95.173.173.105' yazarak bağlanabilirsiniz.");
         }
 
-        // --- VERİTABANI SİMÜLASYONU (Local Storage) ---
+        // --- ŞİKAYET SİSTEMİ ---
         let complaints = JSON.parse(localStorage.getItem('jsComplaints')) || [];
 
-        // --- ŞİKAYET GÖNDERME ---
         function submitComplaint() {
             const name = document.getElementById('compName').value.trim();
             const subject = document.getElementById('compSubject').value.trim();
@@ -190,10 +224,7 @@
             }
 
             const newComp = {
-                id: Date.now(),
-                name: name,
-                subject: subject,
-                text: text,
+                id: Date.now(), name: name, subject: subject, text: text,
                 date: new Date().toLocaleString('tr-TR')
             };
 
@@ -204,71 +235,64 @@
             document.getElementById('compSubject').value = '';
             document.getElementById('compText').value = '';
             
-            alert("Şikayetiniz başarıyla JustSiyaset kurucularına iletildi. En kısa sürede incelenecektir.");
+            alert("Şikayetiniz başarıyla iletildi.");
             renderComplaints(); 
         }
 
-        // --- YÖNETİCİ GİRİŞ KONTROLÜ ---
+        // --- YÖNETİCİ SİSTEMİ ---
         function checkLogin() {
             const user = document.getElementById('adminUser').value;
             const pass = document.getElementById('adminPass').value;
 
-            // Admin 1 ve Admin 2 hesap kontrolleri (Aynen bıraktım)
             const isAdmin1 = (user === 'Mynameis' && pass === 'kemal12345');
             const isAdmin2 = (user === 'siyasetgaming' && pass === 'yöneticiyizbiz');
 
             if(isAdmin1 || isAdmin2) {
                 document.getElementById('loginModal').style.display = 'none';
-                document.getElementById('publicArea').style.display = 'none'; // Oyuncu formunu gizle
-                document.getElementById('adminArea').style.display = 'block'; // Admin panelini aç
+                document.getElementById('publicArea').style.display = 'none';
+                document.getElementById('adminArea').style.display = 'block';
                 
-                // Form içini temizle
                 document.getElementById('adminUser').value = '';
                 document.getElementById('adminPass').value = '';
                 
-                alert("Hoşgeldin Kurucu: " + user);
                 renderComplaints();
             } else {
-                alert("Hatalı Kullanıcı Adı veya Şifre! Sisteme giriş reddedildi.");
+                alert("Hatalı Kullanıcı Adı veya Şifre!");
             }
         }
 
         function logoutAdmin() {
             document.getElementById('adminArea').style.display = 'none';
             document.getElementById('publicArea').style.display = 'block';
-            alert("Sistemden güvenli çıkış yapıldı.");
         }
 
-        // --- ŞİKAYETLERİ PANELE BASTIRMA ---
         function renderComplaints() {
             const list = document.getElementById('complaintsList');
             list.innerHTML = '';
 
             if(complaints.length === 0) {
-                list.innerHTML = '<p style="color: #666; font-style: italic;">Sistemde henüz hiç şikayet veya destek talebi bulunmuyor.</p>';
+                list.innerHTML = '<p style="color: #9ab; font-style: italic;">Sistemde henüz hiç şikayet bulunmuyor.</p>';
                 return;
             }
 
-            // Yeniden eskiye (en son atılan en üstte olacak şekilde) sırala
             const sorted = [...complaints].reverse();
-
             sorted.forEach(c => {
                 const card = document.createElement('div');
                 card.className = 'complaint-card';
                 card.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h4 style="color: #00e676;">Gönderen: ${c.name}</h4>
-                        <button onclick="deleteComplaint(${c.id})" style="background:#b71c1c; color:white; border:none; padding:5px 10px; border-radius:3px; cursor:pointer; font-weight: bold;">Sil</button>
+                        <h4 style="color: #00a8ff;">Gönderen: ${c.name}</h4>
+                        <button onclick="deleteComplaint(${c.id})" style="background:#1c2331; color:#fff; border:1px solid #00a8ff; padding:5px 10px; border-radius:3px; cursor:pointer;">Sil</button>
                     </div>
                     <span style="display: block; margin-bottom: 10px;">Konu: <b>${c.subject}</b> | Tarih: ${c.date}</span>
-                    <p style="background: #111; padding: 10px; border-radius: 4px;">"${c.text}"</p>
+                    <p style="background: #0b0e14; padding: 10px; border-radius: 4px; border: 1px solid #1c2331;">"${c.text}"</p>
                 `;
                 list.appendChild(card);
             });
         }
 
         function deleteComplaint(id) {
-            if(confirm("Bu şikayeti tamamen silmek istediğinize emin misiniz?")) {
+            if(confirm("Silmek istediğinize emin misiniz?")) {
                 complaints = complaints.filter(c => c.id !== id);
                 localStorage.setItem('jsComplaints', JSON.stringify(complaints));
                 renderComplaints();
