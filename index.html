@@ -3,306 +3,571 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Legacy Cafe & Lounge</title>
+  <title>The Roastery Co. | Coffee & Kitchen</title>
 
-  <!-- PWA BAĞLANTILARI -->
+  <!-- PWA METAS -->
   <link rel="manifest" href="./manifest.json" />
-  <meta name="theme-color" content="#00f0ff" />
+  <meta name="theme-color" content="#0a0a0c" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --bg: #07090e;
-      --card-bg: rgba(14, 20, 32, 0.85);
-      --cyan: #00f0ff;
-      --cyan-glow: rgba(0, 240, 255, 0.35);
-      --gold: #f59e0b;
+      --bg: #090a0d;
+      --surface: #121318;
+      --card: #181a20;
+      --border: rgba(255, 255, 255, 0.08);
+      --gold: #d97706;
+      --gold-light: #fbbf24;
+      --gold-glow: rgba(217, 119, 6, 0.25);
       --text: #f8fafc;
       --text-muted: #94a3b8;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; user-select: none; }
-    body { background: var(--bg); color: var(--text); padding-bottom: 90px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 110px; overflow-x: hidden; }
 
-    /* ÜST BAŞLIK */
+    /* HEADER */
     header {
-      padding: 20px;
+      padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
-      background: rgba(7, 9, 14, 0.95);
+      border-bottom: 1px solid var(--border);
+      background: rgba(9, 10, 13, 0.95);
+      backdrop-filter: blur(15px);
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    .brand { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: 1px; }
-    .brand span { color: var(--cyan); text-shadow: 0 0 10px var(--cyan-glow); }
+    .brand-box { display: flex; flex-direction: column; }
+    .brand-title { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 800; letter-spacing: 2px; color: #fff; }
+    .brand-title span { color: var(--gold-light); }
+    .brand-sub { font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); }
 
-    /* UYGULAMAYI YÜKLE BANNERI */
-    #installBanner {
-      display: none;
-      background: linear-gradient(90deg, rgba(0,240,255,0.15) 0%, rgba(14,20,32,0.95) 100%);
-      border: 1px solid var(--cyan);
-      margin: 15px;
-      padding: 14px 18px;
-      border-radius: 12px;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .btn-install {
-      background: var(--cyan);
-      color: #000;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    .container { padding: 15px; max-width: 600px; margin: auto; }
-
-    /* SADAKAT PUAN KARTI */
-    .stamp-card {
-      background: linear-gradient(135deg, rgba(16,28,45,0.9) 0%, rgba(10,14,22,0.95) 100%);
-      border: 1px solid rgba(0, 240, 255, 0.3);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .stamp-title { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; display: flex; justify-content: space-between; margin-bottom: 12px; }
-    .stamp-grid { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
-    .stamp-slot {
-      flex: 1;
-      height: 48px;
-      border: 1px dashed var(--cyan);
+    .header-actions { display: flex; gap: 10px; }
+    .icon-badge-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: #fff;
+      width: 40px;
+      height: 40px;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      color: rgba(255,255,255,0.2);
+      position: relative;
+      cursor: pointer;
     }
-    .stamp-slot.active {
-      background: var(--cyan);
+    .badge-num {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--gold);
       color: #000;
-      border-style: solid;
-      box-shadow: 0 0 12px var(--cyan-glow);
+      font-size: 10px;
+      font-weight: 800;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* KATEGORİ FİLTRELERİ */
-    .cats { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; }
-    .cats::-webkit-scrollbar { display: none; }
-    .cat-btn {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+    /* PWA INSTALL STRIP */
+    #pwaBar {
+      display: none;
+      background: linear-gradient(90deg, #1c1917 0%, #292524 100%);
+      border-bottom: 1px solid var(--gold);
+      padding: 10px 16px;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .wrapper { padding: 16px; max-width: 600px; margin: auto; }
+
+    /* SEARCH BAR */
+    .search-wrap { position: relative; margin-bottom: 18px; }
+    .search-input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 12px 16px 12px 42px;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: 0.2s;
+    }
+    .search-input:focus { border-color: var(--gold); box-shadow: 0 0 15px var(--gold-glow); }
+    .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+    /* ROAST PASS (LOYALTY) */
+    .loyalty-card {
+      background: linear-gradient(135deg, #1c1611 0%, #111217 100%);
+      border: 1px solid rgba(217, 119, 6, 0.35);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    .loyalty-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .loyalty-head h4 { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 1px; color: var(--gold-light); }
+    .slots-row { display: flex; gap: 8px; margin-bottom: 10px; }
+    .slot {
+      flex: 1;
+      height: 44px;
+      border-radius: 8px;
+      border: 1px dashed var(--border);
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.15);
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    .slot.stamped {
+      background: var(--gold);
+      color: #000;
+      border-style: solid;
+      border-color: var(--gold-light);
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    /* KATEGORİ SEKMELERİ */
+    .tabs-track { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; }
+    .tabs-track::-webkit-scrollbar { display: none; }
+    .tab-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
       color: var(--text-muted);
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 12px;
       font-weight: 700;
       white-space: nowrap;
       cursor: pointer;
+      transition: 0.2s;
     }
-    .cat-btn.active { background: var(--cyan); color: #000; border-color: var(--cyan); font-weight: 800; }
+    .tab-pill.active { background: var(--gold); color: #000; border-color: var(--gold); }
 
-    /* MENÜ ÜRÜN KARTLARI */
-    .menu-grid { display: flex; flex-direction: column; gap: 12px; }
-    .product-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
+    /* ÜRÜN KARTLARI */
+    .menu-flow { display: flex; flex-direction: column; gap: 12px; }
+    .menu-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
       padding: 12px;
       display: flex;
-      align-items: center;
       gap: 14px;
+      position: relative;
     }
-    .product-img {
-      width: 75px;
-      height: 75px;
+    .item-photo {
+      width: 82px;
+      height: 82px;
       border-radius: 10px;
       background-size: cover;
       background-position: center;
       flex-shrink: 0;
     }
-    .product-info { flex: 1; }
-    .product-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-    .product-desc { font-size: 12px; color: var(--text-muted); line-height: 1.3; }
-    .product-price { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 800; color: var(--cyan); margin-top: 6px; }
+    .item-details { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .item-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .item-sub { font-size: 11px; color: var(--text-muted); line-height: 1.3; }
+    .item-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+    .item-price { font-size: 15px; font-weight: 800; color: var(--gold-light); }
+    
+    .btn-add-cart {
+      background: var(--surface);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+      transition: 0.2s;
+    }
+    .btn-add-cart:active { transform: scale(0.9); background: var(--gold); color: #000; }
 
-    /* ALT SABİT NAVİGASYON */
-    .bottom-nav {
+    /* BOTTOM NAV */
+    .dock-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(7, 9, 14, 0.95);
-      border-top: 1px solid rgba(0, 240, 255, 0.15);
-      padding: 12px 20px;
+      background: rgba(9, 10, 13, 0.95);
+      border-top: 1px solid var(--border);
+      padding: 10px 20px;
       display: flex;
       justify-content: space-around;
-      backdrop-filter: blur(15px);
+      backdrop-filter: blur(20px);
+      z-index: 90;
     }
-    .nav-tab {
+    .dock-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       color: var(--text-muted);
       font-size: 11px;
-      text-decoration: none;
+      font-weight: 600;
       cursor: pointer;
     }
-    .nav-tab.active { color: var(--cyan); }
-    .nav-tab i { font-size: 18px; }
+    .dock-item.active { color: var(--gold-light); }
+    .dock-item i { font-size: 18px; }
+
+    /* MODAL */
+    .modal-sheet {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: flex-end;
+    }
+    .modal-sheet.open { display: flex; }
+    .sheet-body {
+      background: #111216;
+      border-top: 1px solid var(--border);
+      border-radius: 20px 20px 0 0;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 24px 20px;
+    }
+    .sheet-title { font-size: 16px; font-weight: 800; margin-bottom: 16px; display: flex; justify-content: space-between; }
+    .btn-primary {
+      width: 100%;
+      background: var(--gold);
+      color: #000;
+      font-weight: 800;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 14px;
+    }
+
+    /* CART ITEM */
+    .cart-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .qty-controls { display: flex; align-items: center; gap: 8px; }
+    .qty-btn { width: 26px; height: 26px; border-radius: 6px; border: 1px solid var(--border); background: var(--card); color: #fff; cursor: pointer; }
   </style>
 </head>
 <body>
 
+  <!-- PWA BANNER -->
+  <div id="pwaBar">
+    <span>Uygulamayı ana ekrana ekle, masadan sipariş ver.</span>
+    <button id="pwaInstallBtn" style="background: var(--gold); color: #000; border: none; padding: 4px 10px; border-radius: 6px; font-weight: 700; cursor: pointer;">Yükle</button>
+  </div>
+
+  <!-- HEADER -->
   <header>
-    <div class="brand">LEGACY <span>COFFEE</span></div>
-    <button onclick="addCoffeeStamp()" style="background: rgba(245,158,11,0.15); border: 1px solid var(--gold); color: var(--gold); padding: 5px 12px; border-radius: 6px; font-weight: 700; font-size: 12px; cursor: pointer;">
-      +1 Kahve Puanı
-    </button>
+    <div class="brand-box">
+      <div class="brand-title">THE <span>ROASTERY</span></div>
+      <div class="brand-sub">COFFEE & KITCHEN • EST. 2026</div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-badge-btn" onclick="openCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="badge-num" id="cartCount">0</span>
+      </button>
+    </div>
   </header>
 
-  <!-- PWA YÜKLEME BANNERI -->
-  <div id="installBanner">
-    <div>
-      <div style="font-weight: 700; font-size: 14px;">Uygulamayı İndir</div>
-      <div style="font-size: 11px; color: var(--text-muted);">Tek tıkla menüye ve puanlarına ulaş</div>
+  <div class="wrapper">
+    <!-- SEARCH -->
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" id="searchInput" class="search-input" placeholder="Menüde kahve veya tatlı ara..." oninput="filterSearch()" />
     </div>
-    <button class="btn-install" id="btnInstallApp">Yükle</button>
+
+    <!-- ROAST PASS -->
+    <div class="loyalty-card">
+      <div class="loyalty-head">
+        <h4>ROAST PASS // SADAKAT KARTI</h4>
+        <span style="font-size: 12px; color: var(--gold-light); font-weight: 700;"><span id="stampScore">0</span> / 6 Damga</span>
+      </div>
+      <div class="slots-row">
+        <div class="slot" id="st1"><i class="fa-solid fa-mug-saucer"></i></div>
+        <div class="slot" id="st2"><i class="fa-solid fa-mug-saucer"></i></div>
+        <div class="slot" id="st3"><i class="fa-solid fa-mug-saucer"></i></div>
+        <div class="slot" id="st4"><i class="fa-solid fa-mug-saucer"></i></div>
+        <div class="slot" id="st5"><i class="fa-solid fa-mug-saucer"></i></div>
+        <div class="slot" id="st6"><i class="fa-solid fa-crown"></i></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--text-muted);">
+        <span>6. damgada dilediğin artisan kahve ikramımızdır.</span>
+        <button onclick="stampPass()" style="background: none; border: 1px solid var(--gold); color: var(--gold-light); padding: 2px 8px; border-radius: 4px; font-weight: 700; cursor: pointer;">+1 Damga</button>
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="tabs-track">
+      <button class="tab-pill active" onclick="setCategory('all', this)">Tüm Seçkiler</button>
+      <button class="tab-pill" onclick="setCategory('brew', this)">Artisan Filtre & V60</button>
+      <button class="tab-pill" onclick="setCategory('espresso', this)">Espresso Bar</button>
+      <button class="tab-pill" onclick="setCategory('cold', this)">Cold Draft</button>
+      <button class="tab-pill" onclick="setCategory('dessert', this)">Fırından & Tatlı</button>
+    </div>
+
+    <!-- PRODUCTS FLOW -->
+    <div class="menu-flow" id="menuFlow"></div>
   </div>
 
-  <div class="container">
-    <!-- DİJİTAL KAHVE SADAKAT KARTI -->
-    <div class="stamp-card">
-      <div class="stamp-title">
-        <span>KAHVE KARTI</span>
-        <span style="color: var(--gold); font-size: 14px;"><span id="stampCount">0</span> / 5 Dolu</span>
-      </div>
-      <div class="stamp-grid">
-        <div class="stamp-slot" id="s1"><i class="fa-solid fa-mug-hot"></i></div>
-        <div class="stamp-slot" id="s2"><i class="fa-solid fa-mug-hot"></i></div>
-        <div class="stamp-slot" id="s3"><i class="fa-solid fa-mug-hot"></i></div>
-        <div class="stamp-slot" id="s4"><i class="fa-solid fa-mug-hot"></i></div>
-        <div class="stamp-slot" id="s5"><i class="fa-solid fa-gift"></i></div>
-      </div>
-      <div style="font-size: 11px; color: var(--text-muted);">* Her 5 kahve alışverişinde 1 kahve bizden hediye!</div>
-    </div>
-
-    <!-- KATEGORİ FİLTRELERİ -->
-    <div class="cats">
-      <button class="cat-btn active" onclick="filterMenu('all', this)">Tümü</button>
-      <button class="cat-btn" onclick="filterMenu('sicak', this)">Sıcak Kahveler</button>
-      <button class="cat-btn" onclick="filterMenu('soguk', this)">Soğuk İçecekler</button>
-      <button class="cat-btn" onclick="filterMenu('tatli', this)">Tatlılar</button>
-    </div>
-
-    <!-- MENÜ LİSTESİ -->
-    <div class="menu-grid" id="menuList"></div>
+  <!-- BOTTOM DOCK -->
+  <div class="dock-nav">
+    <div class="dock-item active"><i class="fa-solid fa-book-open"></i><span>Menü</span></div>
+    <div class="dock-item" onclick="openServiceModal()"><i class="fa-solid fa-bell-concierge"></i><span>Garson</span></div>
+    <div class="dock-item" onclick="openWifiModal()"><i class="fa-solid fa-wifi"></i><span>Guest WiFi</span></div>
+    <div class="dock-item" onclick="openCart()"><i class="fa-solid fa-receipt"></i><span>Masa Hesabı</span></div>
   </div>
 
-  <!-- ALT SABİT MENÜ -->
-  <div class="bottom-nav">
-    <div class="nav-tab active"><i class="fa-solid fa-book-open"></i><span>Menü</span></div>
-    <div class="nav-tab" onclick="alert('Garson çağrısı masanıza iletildi!')"><i class="fa-solid fa-bell"></i><span>Garson Çağır</span></div>
-    <div class="nav-tab" onclick="alert('WiFi Şifresi: legacy2026')"><i class="fa-solid fa-wifi"></i><span>WiFi Şifresi</span></div>
+  <!-- SEPET MODALI -->
+  <div class="modal-sheet" id="cartSheet">
+    <div class="sheet-body">
+      <div class="sheet-title">
+        <span>MASA SİPARİŞİ</span>
+        <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="closeCart()"></i>
+      </div>
+      
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 12px; color: var(--text-muted);">Masa Numaranız:</label>
+        <select id="tableNo" style="width: 100%; background: var(--card); border: 1px solid var(--border); color: #fff; padding: 8px; border-radius: 8px; margin-top: 4px;">
+          <option value="Masa 1">Masa 1 (İç Alan)</option>
+          <option value="Masa 2">Masa 2 (İç Alan)</option>
+          <option value="Masa 3">Masa 3 (Bahçe)</option>
+          <option value="Masa 4">Masa 4 (Bahçe)</option>
+          <option value="Bar">Bar Taburesi</option>
+        </select>
+      </div>
+
+      <div id="cartList" style="margin-bottom: 16px;"></div>
+
+      <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 16px; padding-top: 10px; border-top: 1px solid var(--border);">
+        <span>Toplam:</span>
+        <span style="color: var(--gold-light);" id="cartTotal">0 ₺</span>
+      </div>
+
+      <button class="btn-primary" onclick="submitOrder()"><i class="fa-solid fa-check"></i> Siparişi Baristaya İlet</button>
+    </div>
+  </div>
+
+  <!-- GARSON & ÇAĞRI MODALI -->
+  <div class="modal-sheet" id="serviceSheet">
+    <div class="sheet-body">
+      <div class="sheet-title">
+        <span>SERVİS TALEBİ</span>
+        <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="closeServiceModal()"></i>
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Masanıza personel yönlendirmek için talep tipini seçin:</p>
+      
+      <button class="btn-primary" style="background: var(--surface); border: 1px solid var(--border); color: #fff; margin-top: 8px;" onclick="callService('Garson Çağrısı')">🙋‍♂️ Garson Çağır</button>
+      <button class="btn-primary" style="background: var(--surface); border: 1px solid var(--border); color: #fff; margin-top: 8px;" onclick="callService('Nakit Hesap Talebi')">💵 Hesap İstiyorum (Nakit)</button>
+      <button class="btn-primary" style="background: var(--surface); border: 1px solid var(--border); color: #fff; margin-top: 8px;" onclick="callService('POS / Kart Hesap Talebi')">💳 Hesap İstiyorum (Kredi Kartı)</button>
+      <button class="btn-primary" style="background: var(--surface); border: 1px solid var(--border); color: #fff; margin-top: 8px;" onclick="callService('Su & Peçete İsteği')">💧 Su / Peçete Talebi</button>
+    </div>
   </div>
 
   <script>
-    // ================= MENÜ VERİSİ =================
-    const menuData = [
-      { cat: 'sicak', title: 'Americano', desc: 'Özel harman espresso ve sıcak su', price: '90 ₺', img: 'https://images.unsplash.com/photo-1551030173-122aabc4489c?auto=format&fit=crop&w=200&q=80' },
-      { cat: 'sicak', title: 'Caffe Latte', desc: 'Yumuşak süt kreması ve çift shot espresso', price: '110 ₺', img: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=200&q=80' },
-      { cat: 'soguk', title: 'Iced Caramel Macchiato', desc: 'Buz, vanilya şurubu, süt ve karamel sos', price: '130 ₺', img: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=200&q=80' },
-      { cat: 'tatli', title: 'San Sebastian Cheesecake', desc: 'Karamelize üst yüzey, Belçika çikolatası ile', price: '170 ₺', img: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=200&q=80' }
+    // ================= MENÜ ENVANTERİ =================
+    const MENU_ITEMS = [
+      { id: 1, cat: 'brew', name: 'Ethiopia Yirgacheffe (V60)', desc: 'Floral notalar, bergamot ve yasemin aromalı tek köken filtre', price: 135, img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=300&q=80' },
+      { id: 2, cat: 'brew', name: 'Colombia Geisha (Chemex)', desc: 'Yüksek asidite, narenciye ve tatlı karamel bitiş', price: 160, img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=300&q=80' },
+      { id: 3, cat: 'espresso', name: 'Cortado Double Shot', desc: 'Eşit oranda ipeksi süt kreması ve 9 bar basınçlı espresso', price: 110, img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=300&q=80' },
+      { id: 4, cat: 'espresso', name: 'Flat White (Microfoam)', desc: 'Ristretto çift shot üzerine yoğun kadife dokulu süt', price: 125, img: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&w=300&q=80' },
+      { id: 5, cat: 'cold', name: 'Nitro Cold Brew (Draft)', desc: 'Azot gazı ile 18 saat demlenen kremamsı soğuk kahve', price: 140, img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=300&q=80' },
+      { id: 6, cat: 'cold', name: 'Iced Spanish Latte', desc: 'Kondens süt, taze espresso ve kırılmış buz kristalleri', price: 135, img: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=300&q=80' },
+      { id: 7, cat: 'dessert', name: 'San Sebastian & Belçika Çikolatası', desc: 'İçi akışkan fırınlanmış yanık peynir keki', price: 185, img: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=300&q=80' },
+      { id: 8, cat: 'dessert', name: 'Kruvasan & Antep Fıstığı Ezmesi', desc: 'Fransız tereyağlı kat kat sıcak kruvasan', price: 165, img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=300&q=80' }
     ];
 
+    let currentCategory = 'all';
+    let cart = [];
+
+    // ================= MENÜ ÇİZİMİ =================
     function renderMenu(items) {
-      const box = document.getElementById('menuList');
-      box.innerHTML = '';
-      items.forEach(p => {
-        box.innerHTML += `
-          <div class="product-card">
-            <div class="product-img" style="background-image: url('${p.img}')"></div>
-            <div class="product-info">
-              <div class="product-title">${p.title}</div>
-              <div class="product-desc">${p.desc}</div>
-              <div class="product-price">${p.price}</div>
+      const flow = document.getElementById('menuFlow');
+      flow.innerHTML = '';
+
+      if(items.length === 0) {
+        flow.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text-muted); font-size:13px;">Eşleşen ürün bulunamadı.</div>';
+        return;
+      }
+
+      items.forEach(it => {
+        flow.innerHTML += `
+          <div class="menu-item">
+            <div class="item-photo" style="background-image: url('${it.img}')"></div>
+            <div class="item-details">
+              <div>
+                <div class="item-name">${it.name}</div>
+                <div class="item-sub">${it.desc}</div>
+              </div>
+              <div class="item-foot">
+                <span class="item-price">${it.price} ₺</span>
+                <button class="btn-add-cart" onclick="addToCart(${it.id})"><i class="fa-solid fa-plus"></i></button>
+              </div>
             </div>
           </div>
         `;
       });
     }
 
-    function filterMenu(category, btn) {
-      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    function setCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.tab-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      if (category === 'all') renderMenu(menuData);
-      else renderMenu(menuData.filter(x => x.cat === category));
+      document.getElementById('searchInput').value = '';
+      
+      if(cat === 'all') renderMenu(MENU_ITEMS);
+      else renderMenu(MENU_ITEMS.filter(x => x.cat === cat));
     }
 
-    // ================= SADAKAT PUANI (LOCALSTORAGE) =================
-    let stamps = parseInt(localStorage.getItem('cafe_stamps') || '0');
+    function filterSearch() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const filtered = MENU_ITEMS.filter(x => 
+        (currentCategory === 'all' || x.cat === currentCategory) &&
+        (x.name.toLowerCase().includes(query) || x.desc.toLowerCase().includes(query))
+      );
+      renderMenu(filtered);
+    }
 
-    function updateStamps() {
-      document.getElementById('stampCount').innerText = stamps;
-      for(let i=1; i<=5; i++) {
-        const slot = document.getElementById('s' + i);
-        if(i <= stamps) slot.classList.add('active');
-        else slot.classList.remove('active');
+    // ================= SEPET VE SİPARİŞ =================
+    function addToCart(id) {
+      const item = MENU_ITEMS.find(x => x.id === id);
+      const existing = cart.find(x => x.id === id);
+      if(existing) existing.qty++;
+      else cart.push({ ...item, qty: 1 });
+      updateCartUI();
+    }
+
+    function changeQty(id, delta) {
+      const idx = cart.findIndex(x => x.id === id);
+      if(idx > -1) {
+        cart[idx].qty += delta;
+        if(cart[idx].qty <= 0) cart.splice(idx, 1);
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const totalCount = cart.reduce((acc, x) => acc + x.qty, 0);
+      const totalPrice = cart.reduce((acc, x) => acc + (x.price * x.qty), 0);
+      document.getElementById('cartCount').innerText = totalCount;
+      document.getElementById('cartTotal').innerText = totalPrice + ' ₺';
+
+      const list = document.getElementById('cartList');
+      if(cart.length === 0) {
+        list.innerHTML = '<div style="color:var(--text-muted); font-size:13px; text-align:center; padding:20px;">Sepetiniz henüz boş.</div>';
+        return;
+      }
+
+      list.innerHTML = '';
+      cart.forEach(c => {
+        list.innerHTML += `
+          <div class="cart-row">
+            <div>
+              <div style="font-size:13px; font-weight:700;">${c.name}</div>
+              <div style="font-size:12px; color:var(--gold-light);">${c.price * c.qty} ₺</div>
+            </div>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="changeQty(${c.id}, -1)">-</button>
+              <span style="font-size:13px; font-weight:700; width:16px; text-align:center;">${c.qty}</span>
+              <button class="qty-btn" onclick="changeQty(${c.id}, 1)">+</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function openCart() { document.getElementById('cartSheet').classList.add('open'); }
+    function closeCart() { document.getElementById('cartSheet').classList.remove('open'); }
+
+    function submitOrder() {
+      if(cart.length === 0) return alert("Sipariş göndermek için sepete ürün ekleyin.");
+      const table = document.getElementById('tableNo').value;
+      alert(`${table} için siparişiniz baristaya ulaştı! Hazırlanmaya başlıyor.`);
+      cart = [];
+      updateCartUI();
+      closeCart();
+    }
+
+    // ================= GARSON / SERVİS ÇAĞRISI =================
+    function openServiceModal() { document.getElementById('serviceSheet').classList.add('open'); }
+    function closeServiceModal() { document.getElementById('serviceSheet').classList.remove('open'); }
+
+    function callService(type) {
+      alert(`Talebiniz alındı: [${type}]\nPersonelimiz masanıza yönlendiriliyor.`);
+      closeServiceModal();
+    }
+
+    function openWifiModal() {
+      alert("THE ROASTERY GUEST WIFI\n\nSSID: Roastery_Guest_5G\nŞifre: artisan2026");
+    }
+
+    // ================= SADAKAT PUANI (ROAST PASS) =================
+    let stamps = parseInt(localStorage.getItem('roast_stamps') || '0');
+
+    function updateStampUI() {
+      document.getElementById('stampScore').innerText = stamps;
+      for(let i=1; i<=6; i++) {
+        const el = document.getElementById('st' + i);
+        if(i <= stamps) el.classList.add('stamped');
+        else el.classList.remove('stamped');
       }
     }
 
-    function addCoffeeStamp() {
+    function stampPass() {
       if(stamps >= 5) {
-        alert("Tebrikler! 1 Ücretsiz kahve kazandınız. Puanlar sıfırlanıyor.");
+        alert("Tebrikler! 6 damgayı tamamladınız. 1 Ücretsiz Artisan Kahve kazandınız! Kartınız sıfırlanıyor.");
         stamps = 0;
       } else {
         stamps++;
       }
-      localStorage.setItem('cafe_stamps', stamps);
-      updateStamps();
+      localStorage.setItem('roast_stamps', stamps);
+      updateStampUI();
     }
 
-    // ================= PWA VE SERVİCE WORKER =================
-    let deferredPrompt;
+    // ================= PWA ÇALIŞTIRICI =================
+    let pwaPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
-      deferredPrompt = e;
-      document.getElementById('installBanner').style.display = 'flex';
+      pwaPrompt = e;
+      document.getElementById('pwaBar').style.display = 'flex';
     });
 
-    document.getElementById('btnInstallApp').addEventListener('click', async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          document.getElementById('installBanner').style.display = 'none';
-        }
-        deferredPrompt = null;
+    document.getElementById('pwaInstallBtn').addEventListener('click', async () => {
+      if(pwaPrompt) {
+        pwaPrompt.prompt();
+        const { outcome } = await pwaPrompt.userChoice;
+        if(outcome === 'accepted') document.getElementById('pwaBar').style.display = 'none';
+        pwaPrompt = null;
       }
     });
 
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js')
-        .then(() => console.log("PWA Aktif!"))
-        .catch(err => console.log("SW Hatası:", err));
+      navigator.serviceWorker.register('./sw.js').catch(console.error);
     }
 
     window.onload = () => {
-      renderMenu(menuData);
-      updateStamps();
+      renderMenu(MENU_ITEMS);
+      updateStampUI();
+      updateCartUI();
     };
   </script>
 </body>
