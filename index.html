@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>The Heritage Coffee Co. | Artisan Roasters & Kitchen</title>
+
+  <!-- PWA & SEO -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#0c0a09" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="The Heritage Coffee Co. Nitelikli 3. nesil kahve kavuruculuğu, taze mutfak seçkileri, franchise fırsatları ve dijital masa sipariş portalı.">
+
+  <!-- FONTLAR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-espresso: #0c0a09;
+      --bg-dark-roast: #171412;
+      --surface-card: #201b17;
+      --surface-elevated: #29231e;
+      --border-warm: rgba(201, 122, 62, 0.22);
+      
+      --amber-roast: #c97a3e;
+      --caramel-glow: rgba(201, 122, 62, 0.4);
+      --latte-cream: #fef3c7;
+      --steam-gold: #f59e0b;
+      
+      --text-main: #fafaf9;
+      --text-muted: #a8a29e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-espresso);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 90px;
+      position: relative;
+    }
+
+    /* THE COMPANY STYLE VINTAGE MESH BACKGROUND */
+    .ambient-mesh {
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(201, 122, 62, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    /* ============================================================
+       SOL ÇEKMECE (DRAWER) - FRANCHISE & HİKAYEMİZ
+       ============================================================ */
+    .menu-trigger-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--bg-dark-roast);
+      border: 1px solid var(--border-warm);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: all 0.25s ease;
+    }
+
+    .menu-trigger-btn:hover {
+      border-color: var(--amber-roast);
+      box-shadow: 0 0 15px var(--caramel-glow);
+    }
+
+    .menu-trigger-btn .bar-line {
+      width: 20px;
+      height: 2px;
+      background: var(--latte-cream);
+      border-radius: 2px;
+      transition: 0.25s;
+    }
+
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      z-index: 1001;
+      display: none;
+    }
+
+    .drawer-overlay.active { display: block; }
+
+    .drawer-frame {
+      position: fixed;
+      top: 0;
+      left: -380px;
+      width: 340px;
+      height: 100vh;
+      background: #120e0b;
+      border-right: 1px solid var(--border-warm);
+      z-index: 1002;
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 20px 0 60px rgba(0,0,0,0.9);
+      transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .drawer-frame.open { left: 0; }
+
+    .drawer-logo-wrap {
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border-warm);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .drawer-logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--amber-roast) 0%, #8c4a1b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 20px;
+      box-shadow: 0 0 15px var(--caramel-glow);
+    }
+
+    .drawer-menu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .drawer-link {
+      padding: 13px 16px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .drawer-link:hover {
+      background: rgba(201, 122, 62, 0.15);
+      border-color: var(--amber-roast);
+      color: var(--latte-cream);
+      transform: translateX(4px);
+    }
+
+    /* ============================================================
+       TOP NAVBAR & ÖZEL TATLI LOGO
+       ============================================================ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: rgba(12, 10, 9, 0.94);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border-warm);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+
+    /* Tatlı Buharlı Kahve Fincanı Logosu */
+    .sweet-coffee-logo {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #c97a3e 0%, #78350f 100%);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--latte-cream);
+      font-size: 18px;
+      box-shadow: 0 4px 12px var(--caramel-glow);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .sweet-coffee-logo:active {
+      transform: scale(0.92);
+    }
+
+    .steam-spark {
+      position: absolute;
+      top: -4px;
+      right: -3px;
+      font-size: 10px;
+      color: var(--steam-gold);
+      animation: floatSteam 2s infinite ease-in-out;
+    }
+
+    @keyframes floatSteam {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      50% { transform: translateY(-4px) rotate(12deg); opacity: 1; filter: drop-shadow(0 0 6px var(--steam-gold)); }
+    }
+
+    .brand-type {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-primary {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .brand-primary span { color: var(--amber-roast); }
+    .brand-tagline { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-top: 3px; }
+
+    .nav-cart-btn {
+      position: relative;
+      background: var(--bg-dark-roast);
+      border: 1px solid var(--border-warm);
+      color: var(--latte-cream);
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--amber-roast);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 8px var(--caramel-glow);
+    }
+
+    /* ============================================================
+       HERO & THE COMPANY RUHU BANNER
+       ============================================================ */
+    .wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .heritage-hero {
+      background: linear-gradient(180deg, rgba(201, 122, 62, 0.12) 0%, rgba(23, 20, 18, 0.95) 100%), 
+                  url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=800&q=80') center/cover;
+      border: 1px solid var(--border-warm);
+      border-radius: 20px;
+      padding: 35px 24px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201, 122, 62, 0.2);
+      border: 1px solid var(--amber-roast);
+      color: var(--latte-cream);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title span { color: var(--amber-roast); }
+    .hero-desc { font-size: 13px; color: #d6d3d1; line-height: 1.5; margin-bottom: 20px; max-width: 480px; }
+
+    .hero-quick-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      background: linear-gradient(135deg, var(--amber-roast) 0%, #a15420 100%);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px var(--caramel-glow);
+    }
+
+    .btn-hero-outline {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-warm);
+      color: var(--latte-cream);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* SEARCH BAR */
+    .search-box {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .search-field {
+      width: 100%;
+      background: var(--bg-dark-roast);
+      border: 1px solid var(--border-warm);
+      padding: 13px 18px 13px 44px;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .search-field:focus {
+      border-color: var(--amber-roast);
+      box-shadow: 0 0 15px var(--caramel-glow);
+    }
+
+    .search-icon-pos {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--amber-roast);
+    }
+
+    /* KATEGORİ PİLLERİ */
+    .category-track {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+
+    .category-track::-webkit-scrollbar { display: none; }
+
+    .cat-pill {
+      background: var(--bg-dark-roast);
+      border: 1px solid var(--border-warm);
+      color: var(--text-muted);
+      padding: 9px 18px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cat-pill.active {
+      background: var(--amber-roast);
+      border-color: var(--amber-roast);
+      color: #fff;
+      box-shadow: 0 4px 15px var(--caramel-glow);
+    }
+
+    /* ÜRÜN LİSTESİ */
+    .menu-cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .product-box {
+      background: var(--surface-card);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      gap: 14px;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .product-box:hover {
+      border-color: var(--border-warm);
+      transform: translateY(-2px);
+    }
+
+    .product-thumbnail {
+      width: 90px;
+      height: 90px;
+      border-radius: 12px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+      border: 1px solid var(--border-warm);
+    }
+
+    .product-meta {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .product-notes {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .product-action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .product-price-val {
+      font-family: 'Cinzel', serif;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--latte-cream);
+    }
+
+    .add-to-tray-btn {
+      background: var(--bg-dark-roast);
+      border: 1px solid var(--amber-roast);
+      color: var(--latte-cream);
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+      transition: 0.2s;
+    }
+
+    .add-to-tray-btn:active {
+      transform: scale(0.9);
+      background: var(--amber-roast);
+      color: #fff;
+    }
+
+    /* BOTTOM NAV */
+    .bottom-bar-dock {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(12, 10, 9, 0.96);
+      border-top: 1px solid var(--border-warm);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-around;
+      backdrop-filter: blur(15px);
+      z-index: 950;
+    }
+
+    .dock-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .dock-btn.active { color: var(--amber-roast); }
+    .dock-btn i { font-size: 18px; }
+
+    /* ============================================================
+       MODALLAR (FRANCHISE, SEPET, SERVİS, HİKAYE)
+       ============================================================ */
+    .modal-sheet-wrap {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: flex-end;
+    }
+
+    .modal-sheet-wrap.active { display: flex; }
+
+    .sheet-inner-card {
+      background: #171310;
+      border-top: 1px solid var(--border-warm);
+      border-radius: 24px 24px 0 0;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 26px 20px 35px;
+      animation: sheetUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes sheetUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .sheet-head-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .sheet-main-title {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--latte-cream);
+    }
+
+    .form-group-field {
+      margin-bottom: 14px;
+    }
+
+    .form-group-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group-field input, .form-group-field select, .form-group-field textarea {
+      width: 100%;
+      padding: 12px;
+      background: #0d0a08;
+      border: 1px solid var(--border-warm);
+      border-radius: 8px;
+      color: #fff;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .btn-submit-action {
+      width: 100%;
+      background: linear-gradient(135deg, var(--amber-roast) 0%, #a15420 100%);
+      color: #fff;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 6px 20px var(--caramel-glow);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-mesh"></div>
+
+  <!-- SOL MENÜ KARŞILAYICI OVERLAY -->
+  <div class="drawer-overlay" id="drawerBackdrop" onclick="toggleDrawer()"></div>
+
+  <!-- SOL ÇEKMECE (3 ÇİZGİ İÇERİĞİ) -->
+  <div class="drawer-frame" id="sideDrawer">
+    <div class="drawer-logo-wrap">
+      <div class="drawer-logo-icon"><i class="fa-solid fa-mug-hot"></i></div>
+      <div>
+        <div style="font-family: 'Cinzel', serif; font-size: 17px; font-weight: 800; color: #fff;">THE HERITAGE</div>
+        <div style="font-size: 10px; color: var(--text-muted); letter-spacing: 2px;">COFFEE & ROASTERS</div>
+      </div>
+    </div>
+
+    <div class="drawer-menu-list">
+      <div class="drawer-link" onclick="openFranchiseModal()"><i class="fa-solid fa-store" style="color: var(--amber-roast);"></i> Franchise Ortaklığı</div>
+      <div class="drawer-link" onclick="openStoryModal()"><i class="fa-solid fa-feather-pointed" style="color: var(--latte-cream);"></i> Hikayemiz & Kavurma</div>
+      <div class="drawer-link" onclick="openB2BModal()"><i class="fa-solid fa-boxes-stacked" style="color: #60a5fa;"></i> Toptan Kahve (B2B Tedarik)</div>
+      <div class="drawer-link" onclick="openWifiModal()"><i class="fa-solid fa-wifi" style="color: var(--steam-gold);"></i> Şube Wi-Fi Erişimi</div>
+      <div class="drawer-link" onclick="openServiceModal()"><i class="fa-solid fa-bell-concierge" style="color: #34d399;"></i> Masa Garson Çağrısı</div>
+    </div>
+
+    <div style="margin-top: auto; border-top: 1px solid var(--border-warm); padding-top: 16px; font-size: 11px; color: var(--text-muted); text-align: center;">
+      &copy; 2026 The Heritage Coffee Co.<br>Artisan Brewing Philosophy
+    </div>
+  </div>
+
+  <!-- ÜST NAVBAR -->
+  <nav>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <!-- 3 ÇİZGİ BUTONU -->
+      <div class="menu-trigger-btn" onclick="toggleDrawer()" title="Menü">
+        <div class="bar-line"></div>
+        <div class="bar-line"></div>
+        <div class="bar-line"></div>
+      </div>
+
+      <!-- TATLI LOGO VE İSİM -->
+      <div class="nav-brand-group">
+        <div class="sweet-coffee-logo" onclick="toggleDrawer()">
+          <i class="fa-solid fa-mug-hot"></i>
+          <i class="fa-solid fa-sparkles steam-spark"></i>
+        </div>
+        <div class="brand-type">
+          <div class="brand-primary">THE <span>HERITAGE</span></div>
+          <div class="brand-tagline">COFFEE & KITCHEN</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEPET BUTONU -->
+    <button class="nav-cart-btn" onclick="openCartModal()">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span class="cart-badge" id="cartQtyBadge">0</span>
+    </button>
+  </nav>
+
+  <!-- ANA GÖVDE -->
+  <div class="wrapper">
+
+    <!-- THE COMPANY RUHU HERO BANNER -->
+    <div class="heritage-hero">
+      <span class="hero-badge"><i class="fa-solid fa-fire-burner"></i> MICRO-BATCH ROASTED</span>
+      <h1 class="hero-title">SANAT VE TUTKUYLA <span>KAVRULAN</span> ÇEKİRDEKLER</h1>
+      <p class="hero-desc">
+        Tarladan fincana uzanan tek köken seçkilerimiz, ödüllü kavurma profillerimiz ve taze fırın tatlarımızla tanışın.
+      </p>
+      <div class="hero-quick-actions">
+        <button class="btn-hero-primary" onclick="openFranchiseModal()">
+          <i class="fa-solid fa-handshake"></i> Franchise Al
+        </button>
+        <button class="btn-hero-outline" onclick="openStoryModal()">
+          Kavurma Hikayemiz
+        </button>
+      </div>
+    </div>
+
+    <!-- ARAMA ÇUBUĞU -->
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass search-icon-pos"></i>
+      <input type="text" id="menuSearchInput" class="search-field" placeholder="Kahve, demleme veya fırın seçkisi ara..." oninput="filterMenuSearch()">
+    </div>
+
+    <!-- KATEGORİLER -->
+    <div class="category-track">
+      <button class="cat-pill active" onclick="selectCategory('all', this)">Tüm Seçkiler</button>
+      <button class="cat-pill" onclick="selectCategory('v60', this)">Single Origin & V60</button>
+      <button class="cat-pill" onclick="selectCategory('espresso', this)">Espresso Bar</button>
+      <button class="cat-pill" onclick="selectCategory('signature', this)">Cold Draft & İmza</button>
+      <button class="cat-pill" onclick="selectCategory('kitchen', this)">Fırın & Mutfak</button>
+    </div>
+
+    <!-- MENÜ KARTLARI -->
+    <div class="menu-cards-container" id="menuCardsWrap"></div>
+  </div>
+
+  <!-- ALT SABİT BAR -->
+  <div class="bottom-bar-dock">
+    <div class="dock-btn active"><i class="fa-solid fa-mug-saucer"></i><span>Menü</span></div>
+    <div class="dock-btn" onclick="openServiceModal()"><i class="fa-solid fa-bell-concierge"></i><span>Garson</span></div>
+    <div class="dock-btn" onclick="openFranchiseModal()"><i class="fa-solid fa-store"></i><span>Franchise</span></div>
+    <div class="dock-btn" onclick="openCartModal()"><i class="fa-solid fa-receipt"></i><span>Masa Hesabı</span></div>
+  </div>
+
+  <!-- ================= FRANCHISE MODALI ================= -->
+  <div class="modal-sheet-wrap" id="franchiseSheet">
+    <div class="sheet-inner-card">
+      <div class="sheet-head-bar">
+        <div class="sheet-main-title">FRANCHISE BAŞVURUSU</div>
+        <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 20px; color: var(--text-muted);" onclick="closeFranchiseModal()"></i>
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5;">
+        The Heritage Coffee ailesine katılarak şehrinizde nitelikli kahve deneyimini açmak için formu doldurun.
+      </p>
+
+      <div class="form-group-field">
+        <label>Adınız & Soyadınız</label>
+        <input type="text" id="frName" placeholder="Örn: Burak Özdemir">
+      </div>
+      <div class="form-group-field">
+        <label>Telefon Numaranız</label>
+        <input type="tel" id="frPhone" placeholder="05XX XXX XX XX">
+      </div>
+      <div class="form-group-field">
+        <label>Düşündüğünüz Şehir / Lokasyon</label>
+        <input type="text" id="frCity" placeholder="Örn: Eskişehir / Tepebaşı">
+      </div>
+      <div class="form-group-field">
+        <label>Yatırım Bütçeniz</label>
+        <select id="frBudget">
+          <option value="1.5M - 2.5M ₺">1.500.000 ₺ - 2.500.000 ₺</option>
+          <option value="2.5M - 4M ₺">2.500.000 ₺ - 4.000.000 ₺</option>
+          <option value="4M+ ₺">4.000.000 ₺ ve Üzeri</option>
+        </select>
+      </div>
+      <div class="form-group-field">
+        <label>Ticari Deneyim / Notlar</label>
+        <textarea id="frNote" rows="3" placeholder="Önceki işletme tecrübeleriniz..."></textarea>
+      </div>
+
+      <button class="btn-submit-action" onclick="submitFranchise()">
+        <i class="fa-solid fa-paper-plane"></i> Başvuruyu Gönder
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= SEPET MODALI ================= -->
+  <div class="modal-sheet-wrap" id="cartSheet">
+    <div class="sheet-inner-card">
+      <div class="sheet-head-bar">
+        <div class="sheet-main-title">MASA SİPARİŞİ</div>
+        <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 20px; color: var(--text-muted);" onclick="closeCartModal()"></i>
+      </div>
+
+      <div class="form-group-field">
+        <label>Masa Numarası</label>
+        <select id="tableSelector">
+          <option value="Masa 1 (İç Alan)">Masa 1 (İç Alan)</option>
+          <option value="Masa 2 (İç Alan)">Masa 2 (İç Alan)</option>
+          <option value="Masa 3 (Bahçe)">Masa 3 (Bahçe)</option>
+          <option value="Masa 4 (Bahçe)">Masa 4 (Bahçe)</option>
+          <option value="Bar Taburesi">Bar Taburesi</option>
+        </select>
+      </div>
+
+      <div id="cartItemsList" style="margin-bottom: 16px;"></div>
+
+      <div style="display: flex; justify-content: space-between; font-family: 'Cinzel', serif; font-size: 18px; font-weight: 800; border-top: 1px solid var(--border-warm); padding-top: 14px;">
+        <span>TOPLAM TUTAR:</span>
+        <span style="color: var(--amber-roast);" id="cartTotalSum">0 ₺</span>
+      </div>
+
+      <button class="btn-submit-action" onclick="sendOrderToBarista()">
+        <i class="fa-solid fa-check-double"></i> Siparişi Baristaya İlet
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= GARSON SERVİS ÇAĞRI MODALI ================= -->
+  <div class="modal-sheet-wrap" id="serviceSheet">
+    <div class="sheet-inner-card">
+      <div class="sheet-head-bar">
+        <div class="sheet-main-title">MASA SERVİS TALEBİ</div>
+        <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 20px; color: var(--text-muted);" onclick="closeServiceModal()"></i>
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+        Masanıza yönlendirilecek servis talebini seçin:
+      </p>
+
+      <button class="btn-submit-action" style="background: var(--surface-elevated); border: 1px solid var(--border-warm); margin-bottom: 8px;" onclick="triggerServiceCall('Garson Çağrısı')">
+        🙋‍♂️ Garson Çağır
+      </button>
+      <button class="btn-submit-action" style="background: var(--surface-elevated); border: 1px solid var(--border-warm); margin-bottom: 8px;" onclick="triggerServiceCall('Nakit Hesap')">
+        💵 Nakit Hesap Talebi
+      </button>
+      <button class="btn-submit-action" style="background: var(--surface-elevated); border: 1px solid var(--border-warm); margin-bottom: 8px;" onclick="triggerServiceCall('Kredi Kartı / POS')">
+        💳 POS Cihazı / Kartla Hesap
+      </button>
+      <button class="btn-submit-action" style="background: var(--surface-elevated); border: 1px solid var(--border-warm);" onclick="triggerServiceCall('Su & Peçete İsteği')">
+        💧 Su & Peçete Talebi
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= HİKAYEMİZ MODALI ================= -->
+  <div class="modal-sheet-wrap" id="storySheet">
+    <div class="sheet-inner-card">
+      <div class="sheet-head-bar">
+        <div class="sheet-main-title">KAVURMA HİKAYEMİZ</div>
+        <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 20px; color: var(--text-muted);" onclick="closeStoryModal()"></i>
+      </div>
+      <div style="font-size: 13px; color: #d6d3d1; line-height: 1.7;">
+        <p><b style="color: var(--amber-roast);">The Heritage Coffee Co.</b>, kahveyi yalnızca bir içecek değil, bir zanaat ve ritüel olarak kabul eden tutkulu kavurucular tarafından kuruldu.</p>
+        <br>
+        <p>Etiyopya'nın yüksek rakımlı dağlarından, Kolombiya'nın geleneksel çiftliklerine kadar her hasadı yerinde analiz ediyor; tamburlu kavurma fırınlarımızda çekirdeğin floral ve meyvemsi karakterini ortaya çıkaracak mikro profillerle işliyoruz.</p>
+        <br>
+        <p>Fincanınıza ulaşan her yudum; doğaya saygı, titiz bir fermantasyon ve ustalık dolu demleme standartlarımızın bir sonucudur.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ================= MENÜ VERİ TABANI =================
+    const HERITAGE_MENU = [
+      { id: 1, cat: 'v60', name: 'Ethiopia Yirgacheffe V60', notes: 'Yasemin, bergamot ve limonotu notaları, açık kavrum', price: 145, img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=300&q=80' },
+      { id: 2, cat: 'v60', name: 'Panama Boquete Geisha', notes: 'Gül kurusu, şeftali ve akçaağaç tatlılığı', price: 185, img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=300&q=80' },
+      { id: 3, cat: 'espresso', name: 'Heritage Flat White', notes: 'Duble ristretto üzerine 60°C ipeksi mikro köpük', price: 130, img: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&w=300&q=80' },
+      { id: 4, cat: 'espresso', name: 'Cortado Glass', notes: 'Eşit oranda espresso ve kadifemsi süt', price: 120, img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=300&q=80' },
+      { id: 5, cat: 'signature', name: 'Nitro Cold Brew Draft', notes: '18 saat yavaş soğuk demleme, Guinness kreması dokusunda', price: 155, img: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=300&q=80' },
+      { id: 6, cat: 'signature', name: 'Iced Salted Caramel Latte', notes: 'Deniz tuzu esintili el yapımı karamel ve espresso', price: 145, img: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=300&q=80' },
+      { id: 7, cat: 'kitchen', name: 'San Sebastian & Belçika Çikolatası', notes: 'Geleneksel yanık Bask keki, sıcak çikolata şelalesi', price: 195, img: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=300&q=80' },
+      { id: 8, cat: 'kitchen', name: 'Bademli & Tereyağlı Kruvasan', notes: 'Fransız usulü el açması katmer kruvasan hamuru', price: 175, img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=300&q=80' }
+    ];
+
+    let currentSelectedCategory = 'all';
+    let customerTray = [];
+
+    // ================= MENÜ BASIMI =================
+    function printProducts(items) {
+      const container = document.getElementById('menuCardsWrap');
+      container.innerHTML = '';
+
+      if (items.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:35px; color:var(--text-muted); font-size:13px;">Aradığınız kahve veya lezzet bulunamadı.</div>';
+        return;
+      }
+
+      items.forEach(p => {
+        container.innerHTML += `
+          <div class="product-box">
+            <div class="product-thumbnail" style="background-image: url('${p.img}')"></div>
+            <div class="product-meta">
+              <div>
+                <div class="product-heading">${p.name}</div>
+                <div class="product-notes">${p.notes}</div>
+              </div>
+              <div class="product-action-bar">
+                <span class="product-price-val">${p.price} ₺</span>
+                <button class="add-to-tray-btn" onclick="addToCustomerTray(${p.id})">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function selectCategory(cat, btn) {
+      currentSelectedCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('menuSearchInput').value = '';
+
+      if (cat === 'all') printProducts(HERITAGE_MENU);
+      else printProducts(HERITAGE_MENU.filter(x => x.cat === cat));
+    }
+
+    function filterMenuSearch() {
+      const query = document.getElementById('menuSearchInput').value.toLowerCase().trim();
+      const results = HERITAGE_MENU.filter(x => 
+        (currentSelectedCategory === 'all' || x.cat === currentSelectedCategory) &&
+        (x.name.toLowerCase().includes(query) || x.notes.toLowerCase().includes(query))
+      );
+      printProducts(results);
+    }
+
+    // ================= SEPET YÖNETİMİ =================
+    function addToCustomerTray(id) {
+      const item = HERITAGE_MENU.find(x => x.id === id);
+      const exists = customerTray.find(x => x.id === id);
+      if (exists) exists.qty++;
+      else customerTray.push({ ...item, qty: 1 });
+      refreshTrayUI();
+    }
+
+    function modifyTrayQty(id, delta) {
+      const idx = customerTray.findIndex(x => x.id === id);
+      if (idx > -1) {
+        customerTray[idx].qty += delta;
+        if (customerTray[idx].qty <= 0) customerTray.splice(idx, 1);
+      }
+      refreshTrayUI();
+    }
+
+    function refreshTrayUI() {
+      const totalQty = customerTray.reduce((acc, x) => acc + x.qty, 0);
+      const totalSum = customerTray.reduce((acc, x) => acc + (x.price * x.qty), 0);
+
+      document.getElementById('cartQtyBadge').innerText = totalQty;
+      document.getElementById('cartTotalSum').innerText = totalSum + ' ₺';
+
+      const trayBox = document.getElementById('cartItemsList');
+      if (customerTray.length === 0) {
+        trayBox.innerHTML = '<div style="color:var(--text-muted); font-size:13px; text-align:center; padding:20px;">Tepsinizde henüz ürün bulunmuyor.</div>';
+        return;
+      }
+
+      trayBox.innerHTML = '';
+      customerTray.forEach(c => {
+        trayBox.innerHTML += `
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div>
+              <div style="font-size:13px; font-weight:700; color:#fff;">${c.name}</div>
+              <div style="font-size:12px; color:var(--amber-roast);">${c.price * c.qty} ₺</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <button onclick="modifyTrayQty(${c.id}, -1)" style="width:26px; height:26px; border-radius:6px; border:1px solid var(--border-warm); background:#0c0a09; color:#fff; cursor:pointer;">-</button>
+              <span style="font-size:13px; font-weight:700; width:16px; text-align:center;">${c.qty}</span>
+              <button onclick="modifyTrayQty(${c.id}, 1)" style="width:26px; height:26px; border-radius:6px; border:1px solid var(--border-warm); background:#0c0a09; color:#fff; cursor:pointer;">+</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function sendOrderToBarista() {
+      if (customerTray.length === 0) return alert("Lütfen önce tepsiye kahve veya tatlı ekleyin.");
+      const table = document.getElementById('tableSelector').value;
+      alert(`${table} için siparişiniz baristaya ulaştı! Fincanınız hazırlanıyor.`);
+      customerTray = [];
+      refreshTrayUI();
+      closeCartModal();
+    }
+
+    // ================= SOL MENÜ (DRAWER) =================
+    function toggleDrawer() {
+      document.getElementById('sideDrawer').classList.toggle('open');
+      document.getElementById('drawerBackdrop').classList.toggle('active');
+    }
+
+    // ================= MODAL KONTROLLERİ =================
+    function openCartModal() { document.getElementById('cartSheet').classList.add('active'); }
+    function closeCartModal() { document.getElementById('cartSheet').classList.remove('active'); }
+
+    function openFranchiseModal() {
+      if (document.getElementById('sideDrawer').classList.contains('open')) toggleDrawer();
+      document.getElementById('franchiseSheet').classList.add('active');
+    }
+    function closeFranchiseModal() { document.getElementById('franchiseSheet').classList.remove('active'); }
+
+    function openServiceModal() {
+      if (document.getElementById('sideDrawer').classList.contains('open')) toggleDrawer();
+      document.getElementById('serviceSheet').classList.add('active');
+    }
+    function closeServiceModal() { document.getElementById('serviceSheet').classList.remove('active'); }
+
+    function openStoryModal() {
+      if (document.getElementById('sideDrawer').classList.contains('open')) toggleDrawer();
+      document.getElementById('storySheet').classList.add('active');
+    }
+    function closeStoryModal() { document.getElementById('storySheet').classList.remove('active'); }
+
+    function openB2BModal() {
+      if (document.getElementById('sideDrawer').classList.contains('open')) toggleDrawer();
+      alert("THE HERITAGE ROASTING B2B\n\nKafeniz veya ofisiniz için toptan çekirdek tedariki ve barista eğitimi için iletişim:\nb2b@heritagecoffee.com.tr");
+    }
+
+    function openWifiModal() {
+      if (document.getElementById('sideDrawer').classList.contains('open')) toggleDrawer();
+      alert("THE HERITAGE GUEST WIFI\n\nSSID: TheHeritage_Guest\nŞifre: artisanheritage");
+    }
+
+    function triggerServiceCall(type) {
+      alert(`Servis çağrınız iletildi: [${type}]\nPersonelimiz masanıza geliyor.`);
+      closeServiceModal();
+    }
+
+    function submitFranchise() {
+      const name = document.getElementById('frName').value.trim();
+      const phone = document.getElementById('frPhone').value.trim();
+      const city = document.getElementById('frCity').value.trim();
+
+      if (!name || !phone || !city) return alert("Lütfen isim, telefon ve şehir alanlarını eksiksiz doldurun.");
+
+      alert(`Teşekkürler ${name}! ${city} lokasyonu için Franchise ön başvurunuz alındı. Yatırım ekibimiz 24 saat içinde sizinle iletişime geçecektir.`);
+      closeFranchiseModal();
+    }
+
+    // ================= PWA REGISTRATION =================
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(console.error);
+    }
+
+    window.onload = () => {
+      printProducts(HERITAGE_MENU);
+      refreshTrayUI();
+    };
+  </script>
+</body>
+</html>
