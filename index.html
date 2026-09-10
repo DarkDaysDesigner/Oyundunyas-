@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Legacy Cafe & Lounge</title>
+
+  <!-- PWA BAĞLANTILARI -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#00f0ff" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: rgba(14, 20, 32, 0.85);
+      --cyan: #00f0ff;
+      --cyan-glow: rgba(0, 240, 255, 0.35);
+      --gold: #f59e0b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; user-select: none; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 90px; }
+
+    /* ÜST BAŞLIK */
+    header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+      background: rgba(7, 9, 14, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: 1px; }
+    .brand span { color: var(--cyan); text-shadow: 0 0 10px var(--cyan-glow); }
+
+    /* UYGULAMAYI YÜKLE BANNERI */
+    #installBanner {
+      display: none;
+      background: linear-gradient(90deg, rgba(0,240,255,0.15) 0%, rgba(14,20,32,0.95) 100%);
+      border: 1px solid var(--cyan);
+      margin: 15px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-install {
+      background: var(--cyan);
+      color: #000;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .container { padding: 15px; max-width: 600px; margin: auto; }
+
+    /* SADAKAT PUAN KARTI */
+    .stamp-card {
+      background: linear-gradient(135deg, rgba(16,28,45,0.9) 0%, rgba(10,14,22,0.95) 100%);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .stamp-title { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; display: flex; justify-content: space-between; margin-bottom: 12px; }
+    .stamp-grid { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+    .stamp-slot {
+      flex: 1;
+      height: 48px;
+      border: 1px dashed var(--cyan);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: rgba(255,255,255,0.2);
+    }
+    .stamp-slot.active {
+      background: var(--cyan);
+      color: #000;
+      border-style: solid;
+      box-shadow: 0 0 12px var(--cyan-glow);
+    }
+
+    /* KATEGORİ FİLTRELERİ */
+    .cats { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; }
+    .cats::-webkit-scrollbar { display: none; }
+    .cat-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-muted);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .cat-btn.active { background: var(--cyan); color: #000; border-color: var(--cyan); font-weight: 800; }
+
+    /* MENÜ ÜRÜN KARTLARI */
+    .menu-grid { display: flex; flex-direction: column; gap: 12px; }
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .product-img {
+      width: 75px;
+      height: 75px;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+    .product-info { flex: 1; }
+    .product-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .product-desc { font-size: 12px; color: var(--text-muted); line-height: 1.3; }
+    .product-price { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 800; color: var(--cyan); margin-top: 6px; }
+
+    /* ALT SABİT NAVİGASYON */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(7, 9, 14, 0.95);
+      border-top: 1px solid rgba(0, 240, 255, 0.15);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-around;
+      backdrop-filter: blur(15px);
+    }
+    .nav-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      font-size: 11px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-tab.active { color: var(--cyan); }
+    .nav-tab i { font-size: 18px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">LEGACY <span>COFFEE</span></div>
+    <button onclick="addCoffeeStamp()" style="background: rgba(245,158,11,0.15); border: 1px solid var(--gold); color: var(--gold); padding: 5px 12px; border-radius: 6px; font-weight: 700; font-size: 12px; cursor: pointer;">
+      +1 Kahve Puanı
+    </button>
+  </header>
+
+  <!-- PWA YÜKLEME BUTONU -->
+  <div id="installBanner">
+    <div>
+      <div style="font-weight: 700; font-size: 14px;">Uygulamayı İndir</div>
+      <div style="font-size: 11px; color: var(--text-muted);">Tek tıkla menüye ve puanlarına ulaş</div>
+    </div>
+    <button class="btn-install" id="btnInstallApp">Yükle</button>
+  </div>
+
+  <div class="container">
+    <!-- DİJİTAL KAHVE KARTI -->
+    <div class="stamp-card">
+      <div class="stamp-title">
+        <span>KAHVE KARTI</span>
+        <span style="color: var(--gold); font-size: 14px;"><span id="stampCount">0</span> / 5 Dolu</span>
+      </div>
+      <div class="stamp-grid">
+        <div class="stamp-slot" id="s1"><i class="fa-solid fa-mug-hot"></i></div>
+        <div class="stamp-slot" id="s2"><i class="fa-solid fa-mug-hot"></i></div>
+        <div class="stamp-slot" id="s3"><i class="fa-solid fa-mug-hot"></i></div>
+        <div class="stamp-slot" id="s4"><i class="fa-solid fa-mug-hot"></i></div>
+        <div class="stamp-slot" id="s5"><i class="fa-solid fa-gift"></i></div>
+      </div>
+      <div style="font-size: 11px; color: var(--text-muted);">* Her 5 kahve alışverişinde 1 kahve bizden hediye!</div>
+    </div>
+
+    <!-- KATEGORİLER -->
+    <div class="cats">
+      <button class="cat-btn active" onclick="filterMenu('all', this)">Tümü</button>
+      <button class="cat-btn" onclick="filterMenu('sicak', this)">Sıcak Kahveler</button>
+      <button class="cat-btn" onclick="filterMenu('soguk', this)">Soğuk İçecekler</button>
+      <button class="cat-btn" onclick="filterMenu('tatli', this)">Tatlılar</button>
+    </div>
+
+    <!-- MENÜ LİSTESİ -->
+    <div class="menu-grid" id="menuList"></div>
+  </div>
+
+  <!-- ALT MENÜ -->
+  <div class="bottom-nav">
+    <div class="nav-tab active"><i class="fa-solid fa-book-open"></i><span>Menü</span></div>
+    <div class="nav-tab" onclick="alert('Garson çağrısı masanıza iletildi!')"><i class="fa-solid fa-bell"></i><span>Garson Çağır</span></div>
+    <div class="nav-tab" onclick="alert('WiFi Şifresi: legacy2026')"><i class="fa-solid fa-wifi"></i><span>WiFi Şifresi</span></div>
+  </div>
+
+  <script>
+    // ================= MENÜ VERİSİ =================
+    const menuData = [
+      { cat: 'sicak', title: 'Americano', desc: 'Özel harman espresso ve sıcak su', price: '90 ₺', img: 'https://images.unsplash.com/photo-1551030173-122aabc4489c?auto=format&fit=crop&w=200&q=80' },
+      { cat: 'sicak', title: 'Caffe Latte', desc: 'Yumuşak süt kreması ve çift shot espresso', price: '110 ₺', img: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=200&q=80' },
+      { cat: 'soguk', title: 'Iced Caramel Macchiato', desc: 'Buz, vanilya şurubu, süt ve karamel sos', price: '130 ₺', img: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=200&q=80' },
+      { cat: 'tatli', title: 'San Sebastian Cheesecake', desc: 'Karamelize üst yüzey, Belçika çikolatası ile', price: '170 ₺', img: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=200&q=80' }
+    ];
+
+    function renderMenu(items) {
+      const box = document.getElementById('menuList');
+      box.innerHTML = '';
+      items.forEach(p => {
+        box.innerHTML += `
+          <div class="product-card">
+            <div class="product-img" style="background-image: url('${p.img}')"></div>
+            <div class="product-info">
+              <div class="product-title">${p.title}</div>
+              <div class="product-desc">${p.desc}</div>
+              <div class="product-price">${p.price}</div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function filterMenu(category, btn) {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (category === 'all') renderMenu(menuData);
+      else renderMenu(menuData.filter(x => x.cat === category));
+    }
+
+    // ================= SADAKAT PUANI (LOCALSTORAGE) =================
+    let stamps = parseInt(localStorage.getItem('cafe_stamps') || '0');
+
+    function updateStamps() {
+      document.getElementById('stampCount').innerText = stamps;
+      for(let i=1; i<=5; i++) {
+        const slot = document.getElementById('s' + i);
+        if(i <= stamps) slot.classList.add('active');
+        else slot.classList.remove('active');
+      }
+    }
+
+    function addCoffeeStamp() {
+      if(stamps >= 5) {
+        alert("Tebrikler! 1 Ücretsiz kahve kazandınız. Puanlar sıfırlanıyor.");
+        stamps = 0;
+      } else {
+        stamps++;
+      }
+      localStorage.setItem('cafe_stamps', stamps);
+      updateStamps();
+    }
+
+    // ================= PWA VE SERVİCE WORKER =================
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('installBanner').style.display = 'flex';
+    });
+
+    document.getElementById('btnInstallApp').addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          document.getElementById('installBanner').style.display = 'none';
+        }
+        deferredPrompt = null;
+      }
+    });
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(() => console.log("PWA Aktif!"))
+        .catch(err => console.log("SW Hatası:", err));
+    }
+
+    window.onload = () => {
+      renderMenu(menuData);
+      updateStamps();
+    };
+  </script>
+</body>
+</html>
