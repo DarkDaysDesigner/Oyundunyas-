@@ -1,0 +1,21 @@
+{
+  "name": "The Heritage Coffee Co.",
+  "short_name": "TheHeritage",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0c0a09",
+  "theme_color": "#c97a3e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/924/924514.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/924/924514.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
