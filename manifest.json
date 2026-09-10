@@ -1,10 +1,10 @@
 {
-  "name": "Vortex Coffee & Roastery",
-  "short_name": "Vortex",
+  "name": "The Heritage Coffee Co.",
+  "short_name": "TheHeritage",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#07080a",
-  "theme_color": "#d4af37",
+  "background_color": "#0c0a09",
+  "theme_color": "#c97a3e",
   "orientation": "portrait",
   "icons": [
     {
