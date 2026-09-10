@@ -1,10 +1,10 @@
 {
-  "name": "Legacy Coffee & Lounge",
-  "short_name": "LegacyCafe",
+  "name": "Vortex Coffee & Roastery",
+  "short_name": "Vortex",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0b0d14",
-  "theme_color": "#00f0ff",
+  "background_color": "#07080a",
+  "theme_color": "#d4af37",
   "orientation": "portrait",
   "icons": [
     {
