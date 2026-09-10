@@ -1,4 +1,4 @@
-const CACHE_NAME = 'legacy-cafe-v1';
+const CACHE_NAME = 'vortex-coffee-v2';
 const ASSETS = [
   './',
   './index.html',
